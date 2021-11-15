@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3674600216875168027}
   - component: {fileID: 3674600216875168021}
   - component: {fileID: 4553358712200384148}
-  - component: {fileID: 6595517606734638722}
+  - component: {fileID: 703810157980729031}
   m_Layer: 0
   m_Name: Hex
   m_TagString: casilla
@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   x: 0
   y: 0
+  puedeDisparar: 0
+  bonus: 0
   jugador: {fileID: 0}
   balon: {fileID: 0}
   terreno: {fileID: 0}
@@ -132,8 +134,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!61 &6595517606734638722
-BoxCollider2D:
+--- !u!58 &703810157980729031
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -145,16 +147,6 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0015506893, y: -0.004652083}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.8828125}
-    newSize: {x: 1, y: 0.8828125}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.53790355, y: 0.78046906}
-  m_EdgeRadius: 0
+  m_Radius: 0.4

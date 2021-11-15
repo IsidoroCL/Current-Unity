@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class PartidoManager : MonoBehaviour
 {
     //Esta clase gestiona toda la lógica del partido
+    public static PartidoManager partidoManager;
     public int[] marcador = { 0, 0};
 
     //GameObjects que tiene que manejar para comunicarse
@@ -40,6 +41,17 @@ public class PartidoManager : MonoBehaviour
     private int num_turno;
     public int turnoMax;
 
+    private void Awake()
+    {
+        if (partidoManager != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        partidoManager = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +68,8 @@ public class PartidoManager : MonoBehaviour
         canvasControl.enabled = false;
         canvasControlCabeza.enabled = false;
 
+        
+
     }
 
     // Update is called once per frame
@@ -66,11 +80,14 @@ public class PartidoManager : MonoBehaviour
         {
             case faseTurno.INICIO:
                 //Se inicializa el juego
-                limpiarCasillas();
+                LimpiarCasillas();
                 canvasAccion.enabled = false;
                 canvasControl.enabled = false;
                 canvasControlCabeza.enabled = false;
                 primerControl = true;
+                //Compruebo que el jugador atacante no está al lado de un jugador defensor
+                //Si lo está, en ese caso se hace tirada de Regate vs Defensa
+                ComprobarJugadorCercano(balon.casilla);
                 estadoTurno = faseTurno.ATAQUE;
                 //Preparo la fase de Ataque
                 //Comprueba que equipo tiene el balón y activa a sus jugadores
@@ -87,21 +104,21 @@ public class PartidoManager : MonoBehaviour
                 {
                     foreach (Jugador jug2 in jugadoresNegro)
                     {
-                        jug2.activo = true;
+                        jug2.IsSelectable = true;
                     }
                 }
                 else
                 {
                     foreach (Jugador jug2 in jugadoresBlanco)
                     {
-                        jug2.activo = true;
+                        jug2.IsSelectable = true;
                     }
                 }
                 break;
             case faseTurno.ATAQUE:
                 //Fase de Ataque
                                
-                seleccionarObjetos();
+                SeleccionarObjetos();
                 if (jugadores_movidos >= 3)
                 {
                     estadoTurno = faseTurno.DEFENSA;
@@ -113,14 +130,14 @@ public class PartidoManager : MonoBehaviour
                     {
                         foreach (Jugador jug2 in jugadoresNegro)
                         {
-                            jug2.activo = true;
+                            jug2.IsSelectable = true;
                         }
                     }
                     else
                     {
                         foreach (Jugador jug2 in jugadoresBlanco)
                         {
-                            jug2.activo = true;
+                            jug2.IsSelectable = true;
                         }
                     }
                 }
@@ -128,18 +145,27 @@ public class PartidoManager : MonoBehaviour
                 break;
             case faseTurno.DEFENSA:
                 
-                seleccionarObjetos();
+                SeleccionarObjetos();
                 if (jugadores_movidos >= 3)
                 {
                     estadoTurno = faseTurno.ACCION;
                     jugadores_movidos = 0;
                     canvasAccion.enabled = true;
                     Debug.Log("ACCION");
-                }   
+                }
+                
                 break;
             case faseTurno.ACCION:
                 //Muestra los botones de acción y permite hacer acciones
-                seleccionarObjetos();
+                foreach (Jugador jgdr in jugadoresBlanco)
+                {
+                    jgdr.IsActive = true;
+                }
+                foreach (Jugador jgdr in jugadoresNegro)
+                {
+                    jgdr.IsActive = true;
+                }
+                SeleccionarObjetos();
                 break;
             case faseTurno.CONTROL:
                 
@@ -147,7 +173,7 @@ public class PartidoManager : MonoBehaviour
                 //Se usa primerControl para que haga la comprobación una única vez en el turno.
                 if (primerControl)
                 {
-                    limpiarCasillas();
+                    LimpiarCasillas();
                     if (accion == Accion.PASE_BAJO && balon.jugador != null)
                     {
                         //Control
@@ -160,7 +186,7 @@ public class PartidoManager : MonoBehaviour
                     }
                     primerControl = false;
                 }
-                seleccionarObjetos();
+                SeleccionarObjetos();
                 
                 //Tiradas de enfrentamientos por jugadores próximos
                 
@@ -170,7 +196,7 @@ public class PartidoManager : MonoBehaviour
         
     }
 
-    public void encontrarCasillas(Jugador jug, int dist)
+    public void EncontrarCasillas(Jugador jug, int dist)
     {
         //***********************************
         //DEPRECIATED
@@ -181,7 +207,7 @@ public class PartidoManager : MonoBehaviour
         int x = jug.casilla.x;
         int y = jug.casilla.y;
 
-        limpiarCasillas();
+        LimpiarCasillas();
         //Encontrar casillas a 3 de distancia
         for (int i = 0; i < (dist +1); i++)
         {
@@ -239,7 +265,7 @@ public class PartidoManager : MonoBehaviour
         }
     }
 
-    public void limpiarCasillas()
+    public void LimpiarCasillas()
     {
         foreach (Hex cas in casillas)
         {
@@ -260,10 +286,8 @@ public class PartidoManager : MonoBehaviour
         }
     }
 
-    public void seleccionarObjetos()
+    public void SeleccionarObjetos()
     {
-        
-        
         if (Input.GetMouseButtonDown(0))
         {
             //Control del ratón mediante Raycast2D
@@ -287,7 +311,7 @@ public class PartidoManager : MonoBehaviour
                                 //StartCoroutine(jugSeleccionado.MoverJugador(objetivo.GetComponent<Hex>()));
                                 jugSeleccionado.Casilla = objetivo.GetComponent<Hex>();
                                 jugadores_movidos++;
-                                limpiarCasillas();
+                                LimpiarCasillas();
                                 Debug.Log("Jugador movidos: " + jugadores_movidos);
                             
                             }
@@ -297,18 +321,18 @@ public class PartidoManager : MonoBehaviour
                             if (accion == Accion.PASE_BAJO || accion == Accion.CABEZAZO)
                             {
                                 //Mueve la pelota a la casilla
-                                limpiarCasillas();
+                                LimpiarCasillas();
                                 balon.jugadaBalon(objetivo.GetComponent<Hex>());
                                 if (estadoTurno == faseTurno.CONTROL) estadoTurno = faseTurno.INICIO;
                             }
                             else if (accion == Accion.PASE_ALTO)
                             {
-                                limpiarCasillas();
+                                LimpiarCasillas();
                                 balon.jugadaBalon(objetivo.GetComponent<Hex>());
                             }
                             else if (accion == Accion.CORRER)
                             {
-                                limpiarCasillas();
+                                LimpiarCasillas();
                                 if (jugSeleccionado.resistencia > 0)
                                 {
                                     //StartCoroutine(jugSeleccionado.MoverJugador(objetivo.GetComponent<Hex>()));
@@ -330,20 +354,23 @@ public class PartidoManager : MonoBehaviour
                 }
                 else if (objetivo.GetComponent<Jugador>())
                 {
-                    if (estadoTurno == faseTurno.ATAQUE || estadoTurno == faseTurno.DEFENSA)
+                    if (estadoTurno == faseTurno.ATAQUE || 
+                        estadoTurno == faseTurno.DEFENSA)
                     {
                         //En Ataque o Defensa se selecciona al jugador para ver las casillas a mover
                         
-                        if (objetivo.GetComponent<Jugador>().activo == true)
+                        if (objetivo.GetComponent<Jugador>().IsSelectable && objetivo.GetComponent<Jugador>().IsActive)
                         {
                             jugSeleccionado = objetivo.GetComponent<Jugador>();
-                            limpiarCasillas();
+                            LimpiarCasillas();
                             ActivarCasillas(jugSeleccionado.casilla.EncontrarVariosVecinos(3));
                         }
                     }
                     else if (estadoTurno == faseTurno.ACCION || estadoTurno == faseTurno.CONTROL)
                     {
-                        if (accion == Accion.PASE_BAJO || accion == Accion.PASE_ALTO || accion == Accion.CABEZAZO)
+                        if (accion == Accion.PASE_BAJO || 
+                            accion == Accion.PASE_ALTO || 
+                            accion == Accion.CABEZAZO)
                         {
                             balon.jugadaBalon(objetivo.GetComponent<Jugador>().casilla);
                         }
@@ -392,9 +419,9 @@ public class PartidoManager : MonoBehaviour
         }
     }
     
-    public void paseBajo()
+    public void PaseBajo()
     {
-        limpiarCasillas();
+        LimpiarCasillas();
         //Selecciono al jugador
         if (balon.jugador != null) jugSeleccionado = balon.jugador;
         //Buscar casilla y activar
@@ -402,9 +429,9 @@ public class PartidoManager : MonoBehaviour
         accion = Accion.PASE_BAJO;
     }
 
-    public void paseAlto()
+    public void PaseAlto()
     {
-        limpiarCasillas();
+        LimpiarCasillas();
         //Selecciono al jugador
         if (balon.jugador != null) jugSeleccionado = balon.jugador;
         //Buscar casilla y activar
@@ -414,6 +441,7 @@ public class PartidoManager : MonoBehaviour
 
     public void Tiro()
     {
+        LimpiarCasillas();
         if (balon.jugador != null) jugSeleccionado = balon.jugador;
         accion = Accion.TIRO;
         //Casilla Porteria NEGRA 0,6
@@ -436,7 +464,7 @@ public class PartidoManager : MonoBehaviour
 
     public void Cabezazo()
     {
-        limpiarCasillas();
+        LimpiarCasillas();
         //Selecciono al jugador
         if (balon.jugador != null) jugSeleccionado = balon.jugador;
         //Buscar casilla y activar
@@ -446,25 +474,29 @@ public class PartidoManager : MonoBehaviour
 
     public void CabezazoTiro()
     {
+        LimpiarCasillas();
         tiroCabeza = true;
         Tiro();
     }
 
     public void Correr()
     {
+        LimpiarCasillas();
         accion = Accion.CORRER;
         if (balon.jugador != null) jugSeleccionado = balon.jugador;
         ActivarCasillas(jugSeleccionado.casilla.EncontrarVariosVecinos(jugSeleccionado.velocidad));
     }
 
-    public void Pasar()
+    public void PasarTurno()
     {
+        LimpiarCasillas();
         accion = Accion.NADA;
-        estadoTurno = faseTurno.CONTROL;
+        estadoTurno = faseTurno.INICIO;
     }
 
     public void ControlMover()
     {
+        LimpiarCasillas();
         accion = Accion.MOVER;
         if (balon.jugador != null) jugSeleccionado = balon.jugador;
         ActivarCasillas(jugSeleccionado.casilla.EncontrarVariosVecinos(1));
@@ -488,6 +520,153 @@ public class PartidoManager : MonoBehaviour
         }
         Debug.Log("Negro: " + marcador[0] + " Blanco: " + marcador[1]);
 
+    }
+
+    public void ComprobarJugadorCercano(Hex casilla)
+    {
+        Jugador jugador = balon.jugador;
+        List<Hex> vecinos_casilla = casilla.encontrarVecinos();
+        foreach (Hex cas in vecinos_casilla)
+        {
+            if (cas.jugador != null && jugador != null)
+            {
+                //Si el balón lo tiene un jugador y pasamos cerca de otro
+                //Comprobar si son del mismo equipo o diferentes
+                if (cas.jugador.IsActive && cas.jugador.equipo != jugador.equipo)
+                {
+                    //Tiradas de Regate y Defensa
+                    HacerRegate(jugador, cas.jugador);
+                }
+            }
+            //Balon sin dueño
+            else if (cas.jugador != null && jugador == null)
+            {
+                //Equipo diferente
+                if (equipo_con_balon != cas.jugador.equipo && cas.jugador.IsActive)
+                {
+                    if (accion == PartidoManager.Accion.PASE_BAJO 
+                        || accion == PartidoManager.Accion.TIRO
+                        || accion == PartidoManager.Accion.CABEZAZO)
+                    {
+                        balon.ResolverPaseBajo(cas.jugador);
+                    }
+
+                }
+
+            }
+        }
+    }
+
+    public void HacerRegate(Jugador atacante, Jugador defensor)
+    {
+        Debug.Log("Tiradas de regate y defensa");
+        int exitos_jugada = atacante.Tirada(atacante.regate);
+        int exitos_def = defensor.Tirada(defensor.defensa);
+        if (exitos_jugada > exitos_def)
+        {
+            defensor.IsActive = false;
+        }
+        else if (exitos_jugada < exitos_def)
+        {
+            atacante.IsActive = false;
+            balon.jugador = defensor;
+            balon.jugador.tieneBalon = true;
+            balon.eventoBalon = false;
+            Robo();
+        }
+        else
+        {
+            //Implementar Falta
+            Falta(defensor);
+        }
+    }
+
+    public void Falta(Jugador defensor)
+    {
+        Debug.Log("Falta!!");
+        //Comprobar si recibe tarjeta el defensor
+        if (Random.Range(1, 7) < 5)
+        {
+            Debug.Log("Jugador recibe tarjeta amarilla");
+            defensor.tarjeta++;
+            if (defensor.tarjeta > 1)
+            {
+                //Expulsar jugador
+
+            }
+        }
+        //Poner jugadores
+    }
+
+    public void ResolverBalonSuelto()
+    {
+        Hex casillaBalon = balon.casilla;
+        List<Hex> vecinos_casillaBalon = casillaBalon.EncontrarVariosVecinos(3);
+        List<Jugador> jugadoresCerca = new List<Jugador>();
+        //Buscamos a todos los jugadores a tres casillas de distancia del balón
+        foreach (Hex cas in vecinos_casillaBalon)
+        {
+            if (cas.jugador != null)
+            {
+                jugadoresCerca.Add(cas.jugador);
+            }
+        }
+        if (jugadoresCerca.Count == 0)
+        {
+            //Si no hay jugadores cerca, el balón sale por banda más cercana.
+        }
+        else
+        {
+            int blancos = 0;
+            int negros = 0;
+            //Comprobar si hay jugadores de los dos equipos o solo uno.
+            foreach (Jugador jgdr in jugadoresCerca)
+            {
+                if (jgdr.equipo == 0)
+                {
+                    negros++;
+                }
+                else
+                {
+                    blancos++;
+                }
+            }
+            if (negros == 0)
+            {
+                //No hay jugadores negros, por tanto el balón se lo queda el blanco más cercano
+                if (blancos == 1)
+                {
+                    //Comprobar jugador tiene velocidad y resistencia para llegar
+                    if (jugadoresCerca[0].resistencia > 0)
+                    {
+                        List<Hex> casillasVelocidadLlegaJugador = jugadoresCerca[0].casilla.EncontrarVariosVecinos(jugadoresCerca[0].velocidad);
+                        foreach (Hex casilla_balon_si_no in casillasVelocidadLlegaJugador)
+                        {
+                            if (casilla_balon_si_no.Equals(casillaBalon))
+                            {
+                                jugadoresCerca[0].Casilla = casillaBalon;
+                            }
+                        }
+                        
+                        
+                    }  
+                }
+                //Permitir al jugador elegir que quien se queda el balon
+            }
+            else if (blancos == 0)
+            {
+                //No hay jugadores blancos, por tanto el balón se lo queda el negro más cercano
+                if (negros == 1)
+                {
+                    jugadoresCerca[0].Casilla = casillaBalon;
+                }
+            }
+            else
+            {
+                //Hay jugadores de los dos equipos
+            }
+ 
+        }
     }
 
 }

@@ -36,6 +36,7 @@ public class Hex : MonoBehaviour {
         GetComponent<SpriteRenderer>().color = tmp;
 
         activa = false;
+        
         puedeDisparar = false;
         bonus = 0;
         //Depende de la posición, puede o no disparar
@@ -143,6 +144,8 @@ public class Hex : MonoBehaviour {
                 bonus = -1;
             }
         }
+
+        enabled = false;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -162,6 +165,7 @@ public class Hex : MonoBehaviour {
             tmp.a = 0.4f;
             GetComponent<SpriteRenderer>().color = tmp;
             activa = true;
+            enabled = true;
         }
         
     }
@@ -170,6 +174,7 @@ public class Hex : MonoBehaviour {
     {
         GetComponent<SpriteRenderer>().color = color_inicial;
         activa = false;
+        enabled = false;
     }
 
     public void ActivarRojo()
@@ -200,6 +205,12 @@ public class Hex : MonoBehaviour {
             if (x + 1 < 25 && y + 1 < 12) vecinos.Add(terreno.campo[x + 1, y + 1]);
             if (y + 1 < 12 && x - 1 > -1) vecinos.Add(terreno.campo[x - 1, y + 1]);
         }
+        //DEBUG: Ver que casillas marca como vecinos
+        /*foreach (Hex vecino in vecinos)
+        {
+            vecino.ActivarRojo();
+        }
+        */
         return vecinos;
     }
 

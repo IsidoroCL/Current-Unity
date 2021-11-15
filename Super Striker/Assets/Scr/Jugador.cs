@@ -19,6 +19,8 @@ public class Jugador : MonoBehaviour
 
     //Atributos de la carta
     //Luego hay que cambiar para que se asocie a la carta los valores
+    public string nombre;
+
     public int regate;
     public int paseBajo;
     public int paseAlto;
@@ -31,14 +33,16 @@ public class Jugador : MonoBehaviour
 
     public int equipo; //NEGRO = 0; BLANCO = 1
     public int numero;
+    public int tarjeta = 0; 
 
     public bool esPortero;
 
     //Testea si tiene o no la pelota el jugador, si es seleccionable y si ha sido ya usado en el turno
     public bool tieneBalon = false;
-    public bool activo = false;
-    public bool usable;
+    public bool isSelected = false;
+    public bool isActive;
 
+    //PROPIEDADES
     public Hex Casilla
     {
         get { return casilla; }
@@ -51,13 +55,53 @@ public class Jugador : MonoBehaviour
         }
     }
 
+    public bool IsSelectable
+    {
+        get { return isSelected; }
+        set
+        {
+            isSelected = value;
+            if (isSelected)
+            {
+                //Implementar iluminar
+            }
+            else
+            {
+                //Quitar iluminación
+            }
+        }
+    }
+
+    public bool IsActive
+    {
+        get { return isActive; }
+        set
+        {
+            isActive = value;
+            if (isActive)
+            {
+                //Normal
+                Color tmp = GetComponent<SpriteRenderer>().color;
+                tmp.a = 1.0f;
+                GetComponent<SpriteRenderer>().color = tmp;
+            }
+            else
+            {
+                //transparente
+                Color tmp = GetComponent<SpriteRenderer>().color;
+                tmp.a = 0.4f;
+                GetComponent<SpriteRenderer>().color = tmp;
+            }
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
         tieneBalon = false;
-        activo = false;
-        usable = true;
+        isSelected = false;
+        isActive = true;
         partidoManager = gameManager.GetComponent<PartidoManager>();
         terreno = gameManager.GetComponent<Map>();
         casillas = new List<Hex>();
@@ -91,7 +135,7 @@ public class Jugador : MonoBehaviour
             yield return null;
         }
         GetComponent<CircleCollider2D>().enabled = true;
-        activo = false;
+        IsSelectable = false;
     }
 
     public int Tirada(int habilidad)
@@ -109,13 +153,13 @@ public class Jugador : MonoBehaviour
 
     public void Activar()
     {
-        usable = true;
+        IsActive = true;
 
     }
 
     public void Desactivar()
     {
-        usable = false;
+        IsActive = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

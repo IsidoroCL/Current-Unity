@@ -14,7 +14,7 @@ public class Balon : MonoBehaviour
     private int equipo; //NEGRO = 0; BLANCO = 1
 
     //Variables para gestionar el movimiento del balón
-    private bool eventoBalon;
+    public bool eventoBalon;
     private int exitos_jugada;
     private bool stopMover;
 
@@ -132,7 +132,7 @@ public class Balon : MonoBehaviour
         
         foreach (Hex casi in vecinos)
         {
-            if (casi.jugador != null && equipo != casi.jugador.equipo && casi.jugador.usable)
+            if (casi.jugador != null && equipo != casi.jugador.equipo && casi.jugador.IsActive)
             {
                 Debug.Log("tiradas de pase y defensa");
                 casi.ActivarRojo();
@@ -166,7 +166,7 @@ public class Balon : MonoBehaviour
         }
     }
 
-    private void ResolverPaseBajo(Jugador jugRival)
+    public void ResolverPaseBajo(Jugador jugRival)
     {
         eventoBalon = true;
         int exitos_defensa;
@@ -216,65 +216,16 @@ public class Balon : MonoBehaviour
         List<Hex> casillas_rechace = jugRival.casilla.EncontrarVariosVecinos(2);
         partidoManager.accion = PartidoManager.Accion.NADA;
         Hex casilla_elegida = casillas_rechace[Random.Range(0, casillas_rechace.Count)];
-        casilla_elegida.ActivarRojo();
+        //casilla_elegida.ActivarRojo();
         movBalon = StartCoroutine(Mover(casilla_elegida));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Jugador" && jugador == null)
-        {
-            
-        }
-
         if (collision.gameObject.tag == "casilla")
         {
             casilla = collision.gameObject.GetComponent<Hex>();
-            List<Hex> vecinos_casilla = casilla.encontrarVecinos();
-            foreach (Hex cas in vecinos_casilla)
-            {
-                if (cas.jugador != null && jugador != null)
-                {
-                    //Si el balón lo tiene un jugador y pasamos cerca de otro
-                    //Comprobar si son del mismo equipo o diferentes
-                    if (cas.jugador.usable && cas.jugador.equipo != jugador.equipo)
-                    {
-                        //Tiradas de Regate y Defensa
-                        Debug.Log("Tiradas de regate y defensa");
-                        exitos_jugada = jugador.Tirada(jugador.regate);
-                        int exitos_def = cas.jugador.Tirada(cas.jugador.defensa);
-                        if (exitos_jugada > exitos_def)
-                        {
-                            cas.jugador.usable = false;
-                        }
-                        else if (exitos_jugada < exitos_def)
-                        {
-                            jugador = cas.jugador;
-                            jugador.tieneBalon = true;
-                            eventoBalon = false;
-                            partidoManager.Robo();
-                        }
-                        else
-                        {
-                            //Implementar Falta
-                        }
-                    }
-                } 
-                else if (cas.jugador != null && jugador == null)
-                {
-                    //Equipo diferente
-                    if (equipo != cas.jugador.equipo && cas.jugador.usable)
-                    {
-                        if (partidoManager.accion == PartidoManager.Accion.PASE_BAJO || partidoManager.accion == PartidoManager.Accion.TIRO 
-                            || partidoManager.accion == PartidoManager.Accion.CABEZAZO)
-                        {
-                            ResolverPaseBajo(cas.jugador);
-                        }
-
-                    }
-                    
-                }
-            }
+            partidoManager.ComprobarJugadorCercano(casilla);
            
         }
     }
