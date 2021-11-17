@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 
     public ObjectPooler bulletPool;
     protected GameObject player;
+    protected GameObject enemyTargeted;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,29 @@ public class Enemy : MonoBehaviour
             if (life < 1)
             {
                 Destroy(gameObject);
+            }
+        }
+    }
+
+    protected void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Line"))
+        {
+            if (enemyTargeted != null)
+            {
+                enemyTargeted.SetActive(true);
+            }
+            
+        }
+    }
+
+    protected void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Line"))
+        {
+            if (enemyTargeted != null)
+            {
+                enemyTargeted.SetActive(false);
             }
         }
     }
@@ -62,7 +86,9 @@ public class Enemy : MonoBehaviour
     protected virtual void Init()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        enemyTargeted = transform.Find("Target").gameObject;
+        enemyTargeted.SetActive(false);
         bulletPool = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ObjectPooler>();
-        InvokeRepeating("Fire", startTime, repeatFire);
+        InvokeRepeating("Fire", startTime, repeatFire + Random.Range(-0.1f, 0.5f));
     }
 }

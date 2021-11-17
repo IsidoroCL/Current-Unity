@@ -7,17 +7,17 @@ public class PointAndShoot : MonoBehaviour
     public GameObject crosshairs;
     public GameObject player;
     public ObjectPooler pool;
-    //public GameObject bulletStart;
 
     public float bulletSpeed = 60.0f;
 
     private Vector3 target;
-
+    private Animator anim;
     // Use this for initialization
     void Start()
     {
         Cursor.visible = false;
         pool = GetComponent<ObjectPooler>();
+        anim = player.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -28,21 +28,16 @@ public class PointAndShoot : MonoBehaviour
 
         if (player != null)
         {
-            Vector3 difference = crosshairs.transform.position - player.transform.position;
-            float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetButtonDown("Fire1"))
             {
-                float distance = difference.magnitude;
-                Vector3 direction = difference / distance;
-                direction.Normalize();
-                FireBullet(direction, rotationZ);
+                FireBullet();
             }
         }
         
     }
-    void FireBullet(Vector3 direction, float rotationZ)
+    void FireBullet()
     {
+        anim.SetBool("Shooting", true);
         GameObject b = pool.GetPooledObject() as GameObject;
         b.transform.position = player.transform.position;
         b.SetActive(true);

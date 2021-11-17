@@ -8,6 +8,9 @@ TagManager:
   - Cross
   - Enemy
   - GameManager
+  - Target
+  - Line
+  - Asteroid
   layers:
   - Default
   - TransparentFX

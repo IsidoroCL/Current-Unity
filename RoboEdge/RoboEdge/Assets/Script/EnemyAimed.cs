@@ -11,7 +11,6 @@ public class EnemyAimed : Enemy
     {
         speed = 20.0f;
         life = 10;
-        startTime = 10;
         repeatFire = 0;
         isCoroutinePlaying = false;
     }
@@ -28,7 +27,7 @@ public class EnemyAimed : Enemy
 
     protected override void Move()
     {
-        if (transform.position.z < 10)
+        if (transform.position.z > 10)
         {
             base.Move();
         }
@@ -43,9 +42,12 @@ public class EnemyAimed : Enemy
         }
     }
 
-    protected override void Fire()
+    protected override void Init()
     {
-        base.Fire();
+        player = GameObject.FindGameObjectWithTag("Player");
+        enemyTargeted = transform.Find("Target").gameObject;
+        enemyTargeted.SetActive(false);
+        bulletPool = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ObjectPooler>();
     }
 
     IEnumerator MovingRandom()

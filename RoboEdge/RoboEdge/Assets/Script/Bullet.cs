@@ -16,13 +16,6 @@ public class Bullet : MonoBehaviour
         speed = 60.0f;
         r = GetComponent<Rigidbody>();
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-        
-        
-    }
 
     private void OnEnable()
     {
@@ -30,12 +23,15 @@ public class Bullet : MonoBehaviour
         {
             cross = GameObject.FindGameObjectWithTag(target);
         }
-        r.velocity = Vector3.zero;
-        Vector3 difference = cross.transform.position - transform.position;
-        float distance = difference.magnitude;
-        direction = difference / distance;
-        direction = difference;
-        direction.Normalize();
-        r.velocity = direction * speed;
+        if (cross != null)
+        {
+            r.velocity = Vector3.zero;
+            Vector3 difference = cross.transform.position - transform.position;
+            float distance = difference.magnitude;
+            direction = difference / distance;
+            direction = difference;
+            direction.Normalize();
+            r.velocity = direction * speed;
+        }
     }
 }
