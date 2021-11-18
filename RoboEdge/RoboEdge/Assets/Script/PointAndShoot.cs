@@ -1,46 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PointAndShoot : MonoBehaviour
 {
+    #region Fields
     public GameObject crosshairs;
     public GameObject player;
     public ObjectPooler pool;
-
-    public float bulletSpeed = 60.0f;
-
     private Vector3 target;
     private Animator anim;
-    // Use this for initialization
+    private AudioSource shootSound;
+    #endregion
+    #region Unity methods
+    private void Awake()
+    {
+        pool = GetComponent<ObjectPooler>();
+        shootSound = GetComponent<AudioSource>();
+    }
     void Start()
     {
         Cursor.visible = false;
-        pool = GetComponent<ObjectPooler>();
         anim = player.GetComponentInChildren<Animator>();
     }
-
-    // Update is called once per frame
     void Update()
     {
         target = -Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
         crosshairs.transform.position = new Vector3(target.x, target.y, crosshairs.transform.position.z);
-
         if (player != null)
         {
-            if (Input.GetButtonDown("Fire1"))
-            {
-                FireBullet();
-            }
-        }
-        
+            if (Input.GetButtonDown("Fire1")) FireBullet();
+        }  
     }
+    #endregion
+    #region Methods
     void FireBullet()
     {
-        anim.SetBool("Shooting", true);
+        anim.SetTrigger("Shooting");
+        shootSound.Play();
         GameObject b = pool.GetPooledObject() as GameObject;
         b.transform.position = player.transform.position;
         b.SetActive(true);
     }
-
+    #endregion
 }

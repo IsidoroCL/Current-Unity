@@ -1,30 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySpiral : Enemy
 {
+    #region Fields
     private float timeCounter;
     [SerializeField]
     private float radius;
-    // Start is called before the first frame update
+    #endregion
+    #region Unity methods
     private void Awake()
     {
         speed = 5.0f;
         life = 1;
-        repeatFire = 1;
+        repeatFire = 3;
     }
     void Start()
     {
         Init();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Move();
     }
-
+    #endregion
+    #region Methods
     protected override void Move()
     {
         if (transform.position.z > 10)
@@ -32,11 +32,11 @@ public class EnemySpiral : Enemy
             base.Move();
         }
         
+        //Spiral movement
         timeCounter += Time.deltaTime;
         float x = Mathf.Cos(timeCounter);
         float y = Mathf.Sin(timeCounter);
-        
         transform.position = new Vector3(x * radius, y * radius, transform.position.z);
-
     }
+    #endregion
 }

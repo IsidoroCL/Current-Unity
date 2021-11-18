@@ -1,32 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LineTwoPoints : MonoBehaviour
 {
-    private LineRenderer lr;
+    #region Fields
     private GameObject player;
     private GameObject cross;
-
-    private void Awake()
-    {
-        lr = GetComponent<LineRenderer>();
-    }
-    // Start is called before the first frame update
+    #endregion
+    #region Unity methods
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         cross = GameObject.FindGameObjectWithTag("Cross");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (player != null)
-        {
-            //lr.SetPosition(0, player.transform.position);
-            //lr.SetPosition(1, cross.transform.position);
-            transform.LookAt(cross.transform);
-        } 
+        if (player != null) transform.LookAt(cross.transform);
     }
+    #endregion
 }

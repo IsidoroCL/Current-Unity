@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public GameObject cross;
-    public float speed;
+    #region Fields
+    [SerializeField]
+    private GameObject cross;
+    [SerializeField]
+    private float speed;
     private Vector3 direction;
-    Rigidbody r;
+    private Rigidbody r;
 
     [SerializeField]
     private string target;
+    #endregion
+    #region Unity methods
     private void Awake()
     {
         speed = 60.0f;
@@ -19,10 +24,7 @@ public class Bullet : MonoBehaviour
 
     private void OnEnable()
     {
-        if (cross == null)
-        {
-            cross = GameObject.FindGameObjectWithTag(target);
-        }
+        if (cross == null) cross = GameObject.FindGameObjectWithTag(target);
         if (cross != null)
         {
             r.velocity = Vector3.zero;
@@ -34,4 +36,5 @@ public class Bullet : MonoBehaviour
             r.velocity = direction * speed;
         }
     }
+    #endregion
 }

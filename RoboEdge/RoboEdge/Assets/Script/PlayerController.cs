@@ -2,22 +2,36 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5.0f;
-    public float offsetX = 8;
-    public float offsetY = 4;
+    #region Fields
+    [SerializeField]
+    private float speed = 5.0f;
+    [SerializeField]
+    private float offsetX = 8;
+    [SerializeField]
+    private float offsetY = 4;
 
-    // Start is called before the first frame update
-    void Start()
+    private ParticleSystem motor;
+    #endregion
+    #region Unity methods
+    void Awake()
     {
-        
+        motor = GetComponentInChildren<ParticleSystem>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
+        if (vertical != 0 ||
+            horizontal != 0)
+        {
+            motor.Play();
+        }
+        else
+        {
+            motor.Stop();
+        }
         // Move Player according to Input 
         transform.Translate(Vector3.right * horizontal * speed * Time.deltaTime);
         transform.Translate(Vector3.up * vertical * speed * Time.deltaTime);
@@ -26,8 +40,6 @@ public class PlayerController : MonoBehaviour
         if (transform.position.x > offsetX) transform.position = new Vector3(offsetX, transform.position.y);
         if (transform.position.y < -offsetY) transform.position = new Vector3(transform.position.x, -offsetY);
         if (transform.position.y > offsetY) transform.position = new Vector3(transform.position.x, offsetY);
-
     }
-
-    
+    #endregion
 }

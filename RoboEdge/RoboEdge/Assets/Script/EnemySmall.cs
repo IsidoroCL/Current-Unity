@@ -1,52 +1,61 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySmall : Enemy
 {
+    #region Fields
+    private static EnemySmall[,] arrayEnemy = new EnemySmall[20,5];
     private Vector3 newPosition;
-    public GameObject enemySmallPrefab;
+    [SerializeField]
+    private GameObject enemySmallPrefab;
+    #endregion
+    #region Unity methods
     void Awake()
     {
         speed = 25.0f;
         life = 1;
         startTime = 2;
-        repeatFire = 2;
+        repeatFire = 4;
     }
-    // Start is called before the first frame update
     void Start()
     {
         Init();
-        EnemySmall[] sameEnemyTypes = GameObject.FindObjectsOfType<EnemySmall>();
-        int posX;
-        int posY;
-        
-        posX = sameEnemyTypes.Length - 8;
-        if (sameEnemyTypes.Length > 15 &&
-            sameEnemyTypes.Length < 30)
-        {
-            posY = 2;
-        }
-        else if (sameEnemyTypes.Length > 30)
-        {
-            posY = -2;
-        }
-        else
-        {
-            posY = 0;
-        }        
-        newPosition = new Vector3(posX, posY, 10);
-        InvokeRepeating("Duplicate", 4.7f, 4.7f);
     }
-
-    // Update is called once per frame
     void Update()
     {
         Move();
     }
-
-    protected override void Move()
+    #endregion
+    #region Methods
+    protected override void Init()
     {
+        base.Init();
+
+        //Put the enemy in the correct position
+        int posX = -9;
+        int posY = -2;
+        bool hasPosition = false;
+        for (int i = 0; i < 20; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (arrayEnemy[i, j] == null)
+                {
+                    arrayEnemy[i, j] = this;
+                    posX = i - 9;
+                    posY = j - 2;
+                    hasPosition = true;
+                    break;
+                }
+            }
+            if (hasPosition) break;
+        }
+        if (!hasPosition) Destroy(gameObject);
+
+        newPosition = new Vector3(posX, posY, 10);
+        InvokeRepeating("Duplicate", 4.7f, 4.7f);
+    }
+    protected override void Move()
+    { 
         transform.position = Vector3.MoveTowards(transform.position, newPosition, speed * Time.deltaTime);
     }
 
@@ -70,11 +79,11 @@ public class EnemySmall : Enemy
             d.transform.position = transform.position - Vector3.forward *2;
             d.SetActive(true);
         }
-
     }
 
     protected void Duplicate()
     {
-        Instantiate(enemySmallPrefab);
+        Instantiate(enemySmallPrefab, transform.position, Quaternion.identity);
     }
+    #endregion
 }

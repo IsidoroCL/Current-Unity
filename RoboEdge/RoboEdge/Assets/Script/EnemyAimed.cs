@@ -1,12 +1,13 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyAimed : Enemy
 {
-    // Start is called before the first frame update
-    float seconds;
-    bool isCoroutinePlaying;
+    #region Fields
+    private float seconds;
+    private bool isCoroutinePlaying;
+    #endregion
+    #region Unity methods
     private void Awake()
     {
         speed = 20.0f;
@@ -24,7 +25,8 @@ public class EnemyAimed : Enemy
     {
         Move();
     }
-
+    #endregion
+    #region Methods
     protected override void Move()
     {
         if (transform.position.z > 10)
@@ -64,4 +66,5 @@ public class EnemyAimed : Enemy
             }
         }
     }
+    #endregion
 }

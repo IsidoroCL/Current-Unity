@@ -1,40 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour
 {
+    #region Fields
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;
     public int amountToPool;
-
-    // Start is called before the first frame update
+    #endregion
+    #region Unity methods
     void Start()
     {
-        // Loop through list of pooled objects,deactivating them and adding them to the list 
         pooledObjects = new List<GameObject>();
         for (int i = 0; i < amountToPool; i++)
         {
             GameObject obj = (GameObject)Instantiate(objectToPool);
             obj.SetActive(false);
             pooledObjects.Add(obj);
-            obj.transform.SetParent(this.transform); // set as children of Spawn Manager
+            obj.transform.SetParent(this.transform);
         }
     }
-
+    #endregion
+    #region Methods
     public GameObject GetPooledObject()
     {
-        // For as many objects as are in the pooledObjects list
         for (int i = 0; i < pooledObjects.Count; i++)
         {
             // if the pooled objects is NOT active, return that object 
-            if (!pooledObjects[i].activeInHierarchy)
-            {
-                return pooledObjects[i];
-            }
-        }
-        // otherwise, return null   
+            if (!pooledObjects[i].activeInHierarchy) return pooledObjects[i];
+        } 
         return null;
     }
-
+    #endregion
 }
