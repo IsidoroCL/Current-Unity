@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  life: 2
+  life: 1
   startTime: 2
   repeatFire: 1.5
   explosion: {fileID: 1354392912790353106, guid: 7abab4832d4ba1e47aa5c30b2c7d06ff, type: 3}

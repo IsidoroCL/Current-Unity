@@ -90,7 +90,7 @@ public class Enemy : MonoBehaviour
     protected IEnumerator Explosion()
     {
         Instantiate(explosion, transform.position, Quaternion.identity);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
     }
     #endregion

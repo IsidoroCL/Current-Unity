@@ -24,7 +24,9 @@ public class PointAndShoot : MonoBehaviour
     void Update()
     {
         target = -Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
-        crosshairs.transform.position = new Vector3(target.x, target.y, crosshairs.transform.position.z);
+
+        //X and Y coordenates are multipled by 2 because is the limit of the screen in perspective camera
+        crosshairs.transform.position = new Vector3(target.x *2, target.y *2, crosshairs.transform.position.z);
         if (player != null)
         {
             if (Input.GetButtonDown("Fire1")) FireBullet();

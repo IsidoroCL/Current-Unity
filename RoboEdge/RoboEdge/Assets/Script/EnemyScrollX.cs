@@ -8,7 +8,7 @@ public class EnemyScrollX : Enemy
     private void Awake()
     {
         speed = 5.0f;
-        life = 2;
+        life = 1;
         startTime = 5;
         repeatFire = 2.8f + Random.Range(0.0f, 1.0f);
     }

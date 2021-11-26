@@ -11,7 +11,7 @@ public class EnemyAimed : Enemy
     private void Awake()
     {
         speed = 20.0f;
-        life = 10;
+        life = 20;
         repeatFire = 0;
         isCoroutinePlaying = false;
     }

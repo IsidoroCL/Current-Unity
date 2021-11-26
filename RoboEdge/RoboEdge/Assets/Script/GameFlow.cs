@@ -71,7 +71,7 @@ public class GameFlow : MonoBehaviour
         yield return new WaitForSeconds(25);
         Wave5();
         Wave3(0f, 0f);
-        yield return new WaitForSeconds(60);
+        yield return new WaitForSeconds(30);
         Wave6();
         Wave3(-5f, 0f);
         yield return new WaitForSeconds(15);
@@ -81,14 +81,15 @@ public class GameFlow : MonoBehaviour
         Wave3(3f, 0f);
         yield return new WaitForSeconds(5);
         Wave3(-3f, 0f);
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(4);
         Wave3(0f, 3f);
-        yield return new WaitForSeconds(20);
-        Wave3(0f, -3f);
-        Wave1();
-        yield return new WaitForSeconds(10);
-        Wave2();
-        yield return new WaitForSeconds(40); 
+        yield return new WaitForSeconds(3);
+        Wave3(3f, 0f);
+        yield return new WaitForSeconds(2);
+        Wave3(-3f, 0f);
+        yield return new WaitForSeconds(1);
+        Wave3(0f, 3f);
+        yield return new WaitForSeconds(20); 
         
         //Final enemies
         for (int i = 0; i < 5; i++)

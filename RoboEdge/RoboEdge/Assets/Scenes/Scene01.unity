@@ -5557,6 +5557,10 @@ PrefabInstance:
       propertyPath: point
       value: 
       objectReference: {fileID: 895182162}
+    - target: {fileID: 5725635201147580911, guid: 1dfb696448dfc294f917b752aa6a2a6f, type: 3}
+      propertyPath: life
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5725635201293302474, guid: 1dfb696448dfc294f917b752aa6a2a6f, type: 3}
       propertyPath: m_RootOrder
       value: 3
