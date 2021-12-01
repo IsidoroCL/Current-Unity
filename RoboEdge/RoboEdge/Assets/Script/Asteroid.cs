@@ -26,7 +26,7 @@ public class Asteroid : MonoBehaviour
         direction = new Vector3(1, 0, -2);
 
         //Prefab mass = 100
-        life = Mathf.FloorToInt(rb.mass / 10); 
+        life = Mathf.FloorToInt(rb.mass / 20); 
         
         //Random Scale
         float baseScale = rb.mass / 10;
@@ -51,8 +51,19 @@ public class Asteroid : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Bullet"))
         {
-            other.gameObject.SetActive(false);
-            life--;
+            if (other.transform.localScale.x > 1.6)
+            {
+                life -= 3;
+            }
+            else if (other.transform.localScale.x > 0.8)
+            {
+                life -= 2;
+            }
+            else
+            {
+                other.gameObject.SetActive(false);
+                life -= 1;
+            }
             Instantiate(damaged, transform.position, Quaternion.identity);
             if (life < 1)
             {

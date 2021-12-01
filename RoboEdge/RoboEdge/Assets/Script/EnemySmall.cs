@@ -52,7 +52,7 @@ public class EnemySmall : Enemy
         if (!hasPosition) Destroy(gameObject);
 
         newPosition = new Vector3(posX, posY, 10);
-        InvokeRepeating("Duplicate", 4.7f, 4.7f);
+        InvokeRepeating("Duplicate", 2.7f, 4.7f);
     }
     protected override void Move()
     { 

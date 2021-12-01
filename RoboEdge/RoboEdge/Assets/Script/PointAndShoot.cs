@@ -9,12 +9,15 @@ public class PointAndShoot : MonoBehaviour
     private Vector3 target;
     private Animator anim;
     private AudioSource shootSound;
+
+    private float shootAccumulated;
     #endregion
     #region Unity methods
     private void Awake()
     {
         pool = GetComponent<ObjectPooler>();
         shootSound = GetComponent<AudioSource>();
+        shootAccumulated = 1f;
     }
     void Start()
     {
@@ -29,7 +32,17 @@ public class PointAndShoot : MonoBehaviour
         crosshairs.transform.position = new Vector3(target.x *2, target.y *2, crosshairs.transform.position.z);
         if (player != null)
         {
-            if (Input.GetButtonDown("Fire1")) FireBullet();
+            //if (Input.GetButtonDown("Fire1")) FireBullet();
+            if (Input.GetButton("Fire1"))
+            {
+                shootAccumulated += Time.deltaTime;
+                if (shootAccumulated > 5) shootAccumulated = 5f;
+            }
+            if (Input.GetButtonUp("Fire1"))
+            {
+                FireBullet();
+                shootAccumulated = 1f;
+            }
         }  
     }
     #endregion
@@ -40,6 +53,9 @@ public class PointAndShoot : MonoBehaviour
         shootSound.Play();
         GameObject b = pool.GetPooledObject() as GameObject;
         b.transform.position = player.transform.position;
+        //Return the bullet to its original scale 
+        b.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        b.transform.localScale *= shootAccumulated;
         b.SetActive(true);
     }
     #endregion

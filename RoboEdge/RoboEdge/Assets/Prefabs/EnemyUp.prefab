@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4685396233887109792}
   - component: {fileID: 1153284761565641804}
   m_Layer: 9
-  m_Name: Enemy ScrollX
+  m_Name: EnemyUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   explosion: {fileID: 1354392912790353106, guid: 7abab4832d4ba1e47aa5c30b2c7d06ff, type: 3}
   damaged: {fileID: 4605214604659857517, guid: d453d076f4a070b47b4a2eebf61ce729, type: 3}
   bulletPool: {fileID: 0}
+  direction: 0
 --- !u!54 &4685396233887109792
 Rigidbody:
   m_ObjectHideFlags: 0

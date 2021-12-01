@@ -7,7 +7,7 @@ public class LifeBarHandler : MonoBehaviour
     private static Image HealthBarImage;
     #endregion
     #region Unity methods
-    private void Start()
+    private void Awake()
     {
         HealthBarImage = GetComponent<Image>();
     }
@@ -18,11 +18,11 @@ public class LifeBarHandler : MonoBehaviour
         HealthBarImage.fillAmount = value;
         if (HealthBarImage.fillAmount < 0.2f)
         {
-            SetHealthBarColor(Color.red);
+            SetHealthBarColor(new Color(1, 0, 0, 0.5f));
         }
         else
         {
-            SetHealthBarColor(Color.cyan);
+            SetHealthBarColor(new Color(0, 1, 1, 0.5f));
         }
     }
 
