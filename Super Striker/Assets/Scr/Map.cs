@@ -5,10 +5,6 @@ public class Map : MonoBehaviour {
 
 	public GameObject hexPrefab;
 
-	// Size of the map in terms of number of hex tiles
-	// This is NOT representative of the amount of 
-	// world space that we're going to take up.
-	// (i.e. our tiles might be more or less than 1 Unity World Unit)
 	int width = 25;
 	int height = 12;
 
@@ -19,7 +15,7 @@ public class Map : MonoBehaviour {
 	public Hex[,] campo;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		campo = new Hex[width, height];
 	
 		for (int x = 0; x < width; x++) {
@@ -54,9 +50,12 @@ public class Map : MonoBehaviour {
 		}
 
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+	public Hex CasillaCentral()
+    {
+		int centroX = Mathf.FloorToInt(width / 2);
+		int centroY = Mathf.FloorToInt(height / 2);
+		return campo[centroX, centroY];
+    }
+
 }

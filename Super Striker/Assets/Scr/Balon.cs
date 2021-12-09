@@ -11,23 +11,30 @@ public class Balon : MonoBehaviour
     
     public float offSet;
 
-    private int equipo; //NEGRO = 0; BLANCO = 1
-
     //Variables para gestionar el movimiento del balón
-    public bool eventoBalon;
-    private int exitos_jugada;
+    public bool pausarMovimientoBalon;
     private bool stopMover;
+    private CircleCollider2D balonCollider;
+    private bool nuevaCasilla;
+    public AccionState accionState;
 
-    private Coroutine movBalon;
-
-    // Start is called before the first frame update
-    void Start()
+    public Jugador Jugador
     {
-        eventoBalon = false;
-        stopMover = false;
+        get { return jugador; }
+        set {
+            jugador = value;
+        }
     }
 
-    // Update is called once per frame
+    void Awake()
+    {
+        pausarMovimientoBalon = false;
+        stopMover = false;
+        balonCollider = GetComponent<CircleCollider2D>();
+        balonCollider.enabled = false;
+        nuevaCasilla = false;
+    }
+
     void Update()
     {
         if (jugador !=null)
@@ -41,49 +48,31 @@ public class Balon : MonoBehaviour
                 transform.position = new Vector3(jugador.transform.position.x - offSet, jugador.transform.position.y, jugador.transform.position.z);
             }
             casilla = jugador.casilla;
-            equipo = jugador.equipo;
+            jugador.tieneBalon = true;
         }
     }
 
-    public void jugadaBalon(Hex casilla_objetivo)
+    public Coroutine MoverBalon(Hex casilla)
     {
-        movBalon = StartCoroutine(Mover(casilla_objetivo));
-        if (partidoManager.accion == PartidoManager.Accion.PASE_BAJO)
-        {
-            exitos_jugada = jugador.Tirada(jugador.paseBajo);
-            jugador.tieneBalon = false;
-        }
-        else if (partidoManager.accion == PartidoManager.Accion.PASE_ALTO)
-        {
-            exitos_jugada = jugador.Tirada(jugador.paseAlto);
-            ResolverPaseAlto(jugador.casilla);
-            ResolverPaseAlto(casilla_objetivo);
-            jugador.tieneBalon = false;
-        }
-        else if (partidoManager.accion == PartidoManager.Accion.TIRO)
-        {
-            if (partidoManager.tiroCabeza)
-            {
-                exitos_jugada = jugador.Tirada(jugador.cabezazo + 2 + jugador.casilla.bonus);
-            }
-            else
-            {
-                exitos_jugada = jugador.Tirada(jugador.tiro +2 +jugador.casilla.bonus);
-            }
-            
-            jugador.tieneBalon = false;
-        }
-        else if (partidoManager.accion == PartidoManager.Accion.CABEZAZO)
-        {
-            exitos_jugada = jugador.Tirada(jugador.cabezazo);
-            jugador.tieneBalon = false;
-        }
-        jugador = null;
-        
+        StopAllCoroutines();
+        return StartCoroutine(Mover(casilla));
     }
 
-    public IEnumerator Mover(Hex casilla_objetivo)
+    public void PararBalon()
     {
+        StopAllCoroutines();
+        balonCollider.enabled = false;
+    }
+
+    public void ActivarCollider()
+    {
+        balonCollider.enabled = true;
+    }
+
+    private IEnumerator Mover(Hex casilla_objetivo)
+    {
+        casilla = casilla_objetivo;
+        if (jugador != null) jugador.tieneBalon = false;
         //Movimiento del balon 
         Vector3 destino = casilla_objetivo.transform.position;
         float speed = 12f;
@@ -93,10 +82,7 @@ public class Balon : MonoBehaviour
         {
             Vector3 dir = destino - transform.position;
             Vector3 velocity = dir.normalized * speed * Time.deltaTime;
-
-            // Make sure the velocity doesn't actually exceed the distance we want.
             velocity = Vector3.ClampMagnitude(velocity, dir.magnitude);
-
             transform.Translate(velocity);
             if (stopMover)
             {
@@ -104,120 +90,23 @@ public class Balon : MonoBehaviour
                 break;
             }
             yield return null;
-            yield return new WaitUntil(() => eventoBalon == false); 
+            yield return new WaitUntil(() => pausarMovimientoBalon == false); 
         }
         //Asignamos el nuevo jugador al balon y le hacemos poseedor de la pelota
-        if (casilla_objetivo.jugador != null && transform.position == destino)
+        if (transform.position == destino)
         {
-            jugador = casilla_objetivo.jugador;
-            jugador.tieneBalon = true;
-        }
-        //Pasar a Fase Control y permitir mover para otra instancia
-        if (partidoManager.accion == PartidoManager.Accion.TIRO)
-        {
-            //GOL
-            partidoManager.Gol();
-        }
-        partidoManager.FaseControl();
-        
-    }
-
-    private void ResolverPaseAlto(Hex casilla_final)
-    {
-        //Primero se comprueba si a dos casillas de la casilla de inicio hay 
-        //algún jugador del otro equipo
-        //Si hay, entonces se hacen tiradas enfrentadas
-        //Luego se comprueba lo mismo pero en la casilla final
-        List<Hex> vecinos = casilla_final.EncontrarVariosVecinos(2);
-        
-        foreach (Hex casi in vecinos)
-        {
-            if (casi.jugador != null && equipo != casi.jugador.equipo && casi.jugador.IsActive)
+            if (casilla_objetivo.jugador != null)
             {
-                Debug.Log("tiradas de pase y defensa");
-                casi.ActivarRojo();
-                eventoBalon = true;
-                int exitos_defensa = casi.jugador.Tirada(casi.jugador.defensa);
-                Debug.Log("Ataque: " + exitos_jugada);
-                Debug.Log("Defensa: " + exitos_defensa);
-                //Comprobamos si consigue quitarle la pelota
-                if (exitos_jugada > exitos_defensa)
-                {
-                    //La jugada continua
-                    eventoBalon = false;
-                    casi.jugador.Desactivar();
-
-                }
-                else if (exitos_jugada < exitos_defensa)
-                {
-                    //El defensa consigue el balon y se detiene la corutina
-                    StopAllCoroutines();
-                    jugador = casi.jugador;
-                    jugador.tieneBalon = true;
-                    eventoBalon = false;
-                    partidoManager.Robo();
-
-                }
-                else
-                {
-                    Rechace(casi.jugador);
-                }
+                jugador = casilla_objetivo.jugador;
+                jugador.tieneBalon = true;
+            }
+            if (accionState != null)
+            {
+                accionState.JugadaTerminadaConExito();
             }
         }
-    }
-
-    public void ResolverPaseBajo(Jugador jugRival)
-    {
-        eventoBalon = true;
-        int exitos_defensa;
-        if (jugRival.esPortero)
-        {
-            exitos_defensa = jugRival.Tirada(jugRival.defensa +2);
-        }
-        else
-        {
-            exitos_defensa = jugRival.Tirada(jugRival.defensa);
-        }
         
-        Debug.Log("Ataque: " + exitos_jugada);
-        Debug.Log("Defensa: " + exitos_defensa);
-        //Comprobamos si consigue quitarle la pelota
-        if (exitos_jugada > exitos_defensa)
-        {
-            //La jugada continua
-            eventoBalon = false;
-            jugRival.Desactivar();
-
-        }
-        else if (exitos_jugada < exitos_defensa)
-        {
-            //El defensa consigue el balon y se detiene la corutina
-            StopAllCoroutines();
-            jugador = jugRival;
-            jugador.tieneBalon = true;
-            eventoBalon = false;
-            partidoManager.Robo();
-
-        }
-        else
-        {
-            Rechace(jugRival);
-        }
-    }
-
-    private void Rechace(Jugador jugRival)
-    {
-        
-        Debug.Log("Balon rechazado");
-        //Balon rechazado
-        StopCoroutine(movBalon);
-        eventoBalon = false;
-        //Calcular nueva casilla a 2 casillas y mover el balon al azar
-        List<Hex> casillas_rechace = jugRival.casilla.EncontrarVariosVecinos(2);
-        partidoManager.accion = PartidoManager.Accion.NADA;
-        Hex casilla_elegida = casillas_rechace[Random.Range(0, casillas_rechace.Count)];
-        //casilla_elegida.ActivarRojo();
-        movBalon = StartCoroutine(Mover(casilla_elegida));
+        balonCollider.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -225,10 +114,8 @@ public class Balon : MonoBehaviour
         if (collision.gameObject.tag == "casilla")
         {
             casilla = collision.gameObject.GetComponent<Hex>();
-            partidoManager.ComprobarJugadorCercano(casilla);
-           
+            accionState.ComprobarJugadorCercano(casilla);
         }
     }
-
 
 }

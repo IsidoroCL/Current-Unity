@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    int x;
-    int y;
     public Hex casilla;
 
     //Array de casillas para luego moverse en ellas
@@ -21,19 +19,29 @@ public class Jugador : MonoBehaviour
     //Luego hay que cambiar para que se asocie a la carta los valores
     public string nombre;
 
+    [Range(1,5)]
     public int regate;
+    [Range(1, 5)]
     public int paseBajo;
+    [Range(1, 5)]
     public int paseAlto;
+    [Range(1, 5)]
     public int tiro;
+    [Range(1, 5)]
     public int cabezazo;
+    [Range(1, 5)]
     public int defensa;
+    [Range(1, 3)]
     public int velocidad;
+    [Range(1, 5)]
     public int control;
+    [Range(1, 3)]
     public int resistencia;
 
     public int equipo; //NEGRO = 0; BLANCO = 1
+    [Range(1, 7)]
     public int numero;
-    public int tarjeta = 0; 
+    public bool tieneTarjeta = false; 
 
     public bool esPortero;
 
@@ -41,6 +49,9 @@ public class Jugador : MonoBehaviour
     public bool tieneBalon = false;
     public bool isSelected = false;
     public bool isActive;
+
+    //Gestiona el movimiento casilla a casilla
+    private bool nuevaCasilla;
 
     //PROPIEDADES
     public Hex Casilla
@@ -64,6 +75,7 @@ public class Jugador : MonoBehaviour
             if (isSelected)
             {
                 //Implementar iluminar
+                
             }
             else
             {
@@ -99,29 +111,24 @@ public class Jugador : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        nuevaCasilla = false;
         tieneBalon = false;
         isSelected = false;
         isActive = true;
-        partidoManager = gameManager.GetComponent<PartidoManager>();
-        terreno = gameManager.GetComponent<Map>();
+        partidoManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<PartidoManager>();
+        terreno = GameObject.FindGameObjectWithTag("GameController").GetComponent<Map>();
         casillas = new List<Hex>();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
-        //transform.Translate(new Vector3(1 * Time.deltaTime, 0, 0));
+
     }
 
     public IEnumerator MoverJugador(Hex casilla_objetivo)
     {
         //Movimiento del jugador cuando está activo el turno
-        //Debug.Log("Has pulsado");
-        Vector3 destino = casilla_objetivo.transform.position;
+        Vector3 destino = new Vector3(casilla_objetivo.transform.position.x,
+                                       casilla_objetivo.transform.position.y,
+                                        -2);
         float speed = 5f;
-        GetComponent<CircleCollider2D>().enabled = false;
         //Mover jugador a casilla seleccionada
         while (transform.position != destino)
         {
@@ -132,10 +139,18 @@ public class Jugador : MonoBehaviour
             velocity = Vector3.ClampMagnitude(velocity, dir.magnitude);
 
             transform.Translate(velocity);
+            if (nuevaCasilla)
+            {
+                nuevaCasilla = false;
+                yield return MoverJugador(casilla);  
+            }
             yield return null;
         }
-        GetComponent<CircleCollider2D>().enabled = true;
-        IsSelectable = false;
+        if (casilla == partidoManager.balon.casilla)
+        {
+            tieneBalon = true;
+            partidoManager.balon.jugador = this;
+        }
     }
 
     public int Tirada(int habilidad)
@@ -168,9 +183,26 @@ public class Jugador : MonoBehaviour
         {
             casilla = collision.gameObject.GetComponent<Hex>();
             casilla.jugador = gameObject.GetComponent<Jugador>();
-            transform.position = casilla.transform.position;
+            nuevaCasilla = true;
+            if (tieneBalon)
+            {
+                partidoManager.ComprobarJugadorCercano(casilla);
+            }
         }
     }
 
+    public bool PuedeAlcanzarElBalon(Hex casillaBalon)
+    {
+        List<Hex> casillasVelocidadLlegaJugador = casilla.EncontrarVariosVecinos(velocidad);
+        foreach (Hex casilla_balon_si_no in casillasVelocidadLlegaJugador)
+        {
+            if (casilla_balon_si_no.x == casillaBalon.x &&
+                casilla_balon_si_no.y == casillaBalon.y)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

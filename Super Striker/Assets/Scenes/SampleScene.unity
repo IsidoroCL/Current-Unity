@@ -256,6 +256,93 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 33843493}
   m_CullTransparentMesh: 1
+--- !u!114 &41491791 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+  m_PrefabInstance: {fileID: 2071417086}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &113972992
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: equipo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385108, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c413db120ffc2754baea73f8062dc1b4, type: 3}
+    - target: {fileID: 5473869806666385109, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Name
+      value: Futbolista (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 22.145187
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.693983
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+--- !u!114 &113972993 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+  m_PrefabInstance: {fileID: 113972992}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &195428258
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +407,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &264108802
 GameObject:
@@ -417,188 +504,24 @@ RectTransform:
   - {fileID: 2111759643}
   - {fileID: 1940442365}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &274160008
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 274160010}
-  - component: {fileID: 274160009}
-  - component: {fileID: 274160011}
-  - component: {fileID: 274160012}
-  - component: {fileID: 274160013}
-  - component: {fileID: 274160014}
-  m_Layer: 7
-  m_Name: Fut_Negro
-  m_TagString: Jugador
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &274160009
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274160008}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 34f5a9d4eedd34b43878bec51bc9b205, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.44, y: 1.44}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &274160010
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274160008}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.06, y: 9.22, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &274160011
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274160008}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0246377, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.6
---- !u!114 &274160012
+--- !u!114 &274160012 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+  m_PrefabInstance: {fileID: 5473869806400790365}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274160008}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  casilla: {fileID: 0}
-  gameManager: {fileID: 1659956008}
-  nombre: Prueba
-  regate: 1
-  paseBajo: 0
-  paseAlto: 2
-  tiro: 3
-  cabezazo: 3
-  defensa: 2
-  velocidad: 2
-  control: 2
-  resistencia: 3
-  equipo: 0
-  numero: 3
-  tarjeta: 0
-  esPortero: 0
-  tieneBalon: 1
-  isSelected: 0
-  isActive: 0
---- !u!50 &274160013
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274160008}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &274160014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 274160008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e077349ab3868404eb418f90cae35f8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nombre: 
-  regate: 0
-  paseBajo: 0
-  paseAlto: 0
-  tiro: 0
-  cabezazo: 0
-  defensa: 0
-  velocidad: 0
-  control: 0
 --- !u!1 &301394328
 GameObject:
   m_ObjectHideFlags: 0
@@ -866,6 +789,215 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 309788211}
   m_CullTransparentMesh: 1
+--- !u!1001 &340160240
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: equipo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: tieneBalon
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385108, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6dded7e95e77f08409b6e7bd3bb3d481, type: 3}
+    - target: {fileID: 5473869806666385109, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Name
+      value: Futbolista (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.188164
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.182978
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+--- !u!114 &340160241 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+  m_PrefabInstance: {fileID: 340160240}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &393319743
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5473869806666385109, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Name
+      value: Futbolista (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+--- !u!114 &393319744 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+  m_PrefabInstance: {fileID: 393319743}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &408230322
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5473869806666385108, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4a8beec03a401574c99da221f3e4304f, type: 3}
+    - target: {fileID: 5473869806666385109, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Name
+      value: Futbolista (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
 --- !u!1 &411546535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,6 +1349,71 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &536738237
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: equipo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385108, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b6908d59927d4954398e5b1d87455501, type: 3}
+    - target: {fileID: 5473869806666385109, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Name
+      value: Futbolista (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
 --- !u!1 &627983455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,7 +1497,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &627983458
 MonoBehaviour:
@@ -1315,10 +1512,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   casilla: {fileID: 0}
-  jugador: {fileID: 274160012}
+  jugador: {fileID: 340160241}
   partidoManager: {fileID: 1659956011}
   offSet: 0.5
-  eventoBalon: 0
+  pausarMovimientoBalon: 0
 --- !u!58 &627983459
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1721,7 +1918,7 @@ RectTransform:
   - {fileID: 1212265256}
   - {fileID: 1909148693}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2128,6 +2325,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948171598}
   m_CullTransparentMesh: 1
+--- !u!114 &992739319 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+  m_PrefabInstance: {fileID: 408230322}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &996015607
 GameObject:
   m_ObjectHideFlags: 0
@@ -2396,312 +2604,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080606719}
   m_CullTransparentMesh: 1
---- !u!1 &1087333069
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1087333074}
-  - component: {fileID: 1087333073}
-  - component: {fileID: 1087333072}
-  - component: {fileID: 1087333071}
-  - component: {fileID: 1087333070}
-  m_Layer: 7
-  m_Name: Fut_Negro (7)
-  m_TagString: Jugador
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!50 &1087333070
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087333069}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &1087333071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087333069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  casilla: {fileID: 0}
-  gameManager: {fileID: 1659956008}
-  nombre: 
-  regate: 4
-  paseBajo: 2
-  paseAlto: 2
-  tiro: 3
-  cabezazo: 3
-  defensa: 5
-  velocidad: 2
-  control: 4
-  resistencia: 3
-  equipo: 1
-  numero: 3
-  tarjeta: 0
-  esPortero: 0
-  tieneBalon: 1
-  isSelected: 0
-  isActive: 0
---- !u!58 &1087333072
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087333069}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0246377, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.6
---- !u!212 &1087333073
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087333069}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: afce80f616ac291419ca8315dd892fba, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.44, y: 1.44}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1087333074
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087333069}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.2, y: 4.31, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 15
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1095429224
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1095429229}
-  - component: {fileID: 1095429228}
-  - component: {fileID: 1095429227}
-  - component: {fileID: 1095429226}
-  - component: {fileID: 1095429225}
-  m_Layer: 7
-  m_Name: Fut_Negro (3)
-  m_TagString: Jugador
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!50 &1095429225
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095429224}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &1095429226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095429224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  casilla: {fileID: 0}
-  gameManager: {fileID: 1659956008}
-  nombre: 
-  regate: 4
-  paseBajo: 2
-  paseAlto: 2
-  tiro: 3
-  cabezazo: 3
-  defensa: 0
-  velocidad: 2
-  control: 4
-  resistencia: 3
-  equipo: 1
-  numero: 3
-  tarjeta: 0
-  esPortero: 0
-  tieneBalon: 1
-  isSelected: 0
-  isActive: 0
---- !u!58 &1095429227
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095429224}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0246377, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.6
---- !u!212 &1095429228
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095429224}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: c413db120ffc2754baea73f8062dc1b4, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.44, y: 1.44}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1095429229
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095429224}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.66, y: 10.59, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1102093401
 GameObject:
   m_ObjectHideFlags: 0
@@ -2782,7 +2684,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1170469326
 GameObject:
@@ -2918,159 +2820,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170469326}
   m_CullTransparentMesh: 1
---- !u!1 &1187353647
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1187353652}
-  - component: {fileID: 1187353651}
-  - component: {fileID: 1187353650}
-  - component: {fileID: 1187353649}
-  - component: {fileID: 1187353648}
-  m_Layer: 7
-  m_Name: Fut_Negro (5)
-  m_TagString: Jugador
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!50 &1187353648
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187353647}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &1187353649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187353647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  casilla: {fileID: 0}
-  gameManager: {fileID: 1659956008}
-  nombre: 
-  regate: 4
-  paseBajo: 2
-  paseAlto: 2
-  tiro: 3
-  cabezazo: 3
-  defensa: 0
-  velocidad: 2
-  control: 2
-  resistencia: 3
-  equipo: 1
-  numero: 3
-  tarjeta: 0
-  esPortero: 0
-  tieneBalon: 1
-  isSelected: 0
-  isActive: 0
---- !u!58 &1187353650
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187353647}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0246377, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.6
---- !u!212 &1187353651
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187353647}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 1bceeb0ee68913e4e8dac86a9a802b86, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.44, y: 1.44}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1187353652
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187353647}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.36, y: 4.37, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1212265255
 GameObject:
   m_ObjectHideFlags: 0
@@ -3204,6 +2953,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1212265255}
   m_CullTransparentMesh: 1
+--- !u!1001 &1291314314
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: equipo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385108, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: afce80f616ac291419ca8315dd892fba, type: 3}
+    - target: {fileID: 5473869806666385109, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Name
+      value: Futbolista (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 19.784985
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.362038
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+--- !u!114 &1291314315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+  m_PrefabInstance: {fileID: 1291314314}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1322366763
 GameObject:
   m_ObjectHideFlags: 0
@@ -3337,465 +3162,151 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1322366763}
   m_CullTransparentMesh: 1
---- !u!1 &1338113631
-GameObject:
+--- !u!1001 &1635424219
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1338113636}
-  - component: {fileID: 1338113635}
-  - component: {fileID: 1338113634}
-  - component: {fileID: 1338113633}
-  - component: {fileID: 1338113632}
-  m_Layer: 7
-  m_Name: Fut_Negro (2)
-  m_TagString: Jugador
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!50 &1338113632
-Rigidbody2D:
-  serializedVersion: 4
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: equipo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385108, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ffd3b36ecabb7a049ad57bb63fd014c2, type: 3}
+    - target: {fileID: 5473869806666385108, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385108, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385108, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385109, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Name
+      value: Futbolista (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_RootOrder
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 18.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 10.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+--- !u!1001 &1653133235
+PrefabInstance:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338113631}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &1338113633
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5473869806666385109, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Name
+      value: Futbolista (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.424782
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.2573376
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+--- !u!114 &1653133236 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+  m_PrefabInstance: {fileID: 1653133235}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338113631}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  casilla: {fileID: 0}
-  gameManager: {fileID: 1659956008}
-  nombre: 
-  regate: 4
-  paseBajo: 2
-  paseAlto: 2
-  tiro: 3
-  cabezazo: 3
-  defensa: 2
-  velocidad: 2
-  control: 4
-  resistencia: 3
-  equipo: 0
-  numero: 3
-  tarjeta: 0
-  esPortero: 0
-  tieneBalon: 0
-  isSelected: 0
-  isActive: 0
---- !u!58 &1338113634
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338113631}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0246377, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.6
---- !u!212 &1338113635
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338113631}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 34f5a9d4eedd34b43878bec51bc9b205, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.44, y: 1.44}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1338113636
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1338113631}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26, y: 12.13, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1362938297
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1362938302}
-  - component: {fileID: 1362938301}
-  - component: {fileID: 1362938300}
-  - component: {fileID: 1362938299}
-  - component: {fileID: 1362938298}
-  m_Layer: 7
-  m_Name: Fut_Negro (1)
-  m_TagString: Jugador
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!50 &1362938298
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362938297}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &1362938299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362938297}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  casilla: {fileID: 0}
-  gameManager: {fileID: 1659956008}
-  nombre: 
-  regate: 4
-  paseBajo: 2
-  paseAlto: 2
-  tiro: 3
-  cabezazo: 3
-  defensa: 0
-  velocidad: 2
-  control: 4
-  resistencia: 3
-  equipo: 0
-  numero: 3
-  tarjeta: 0
-  esPortero: 0
-  tieneBalon: 0
-  isSelected: 0
-  isActive: 0
---- !u!58 &1362938300
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362938297}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0246377, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.49826193
---- !u!212 &1362938301
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362938297}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 34f5a9d4eedd34b43878bec51bc9b205, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.44, y: 1.44}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1362938302
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1362938297}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.34, y: 2.1, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1481215820
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1481215825}
-  - component: {fileID: 1481215824}
-  - component: {fileID: 1481215823}
-  - component: {fileID: 1481215822}
-  - component: {fileID: 1481215821}
-  m_Layer: 7
-  m_Name: Fut_Negro (4)
-  m_TagString: Jugador
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!50 &1481215821
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481215820}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &1481215822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481215820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  casilla: {fileID: 0}
-  gameManager: {fileID: 1659956008}
-  nombre: 
-  regate: 4
-  paseBajo: 2
-  paseAlto: 2
-  tiro: 3
-  cabezazo: 3
-  defensa: 5
-  velocidad: 2
-  control: 4
-  resistencia: 3
-  equipo: 1
-  numero: 3
-  tarjeta: 0
-  esPortero: 0
-  tieneBalon: 1
-  isSelected: 0
-  isActive: 0
---- !u!58 &1481215823
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481215820}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0246377, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.6
---- !u!212 &1481215824
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481215820}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: afce80f616ac291419ca8315dd892fba, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.44, y: 1.44}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1481215825
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1481215820}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.69, y: 8.75, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1659956008
 GameObject:
   m_ObjectHideFlags: 0
@@ -3809,7 +3320,7 @@ GameObject:
   - component: {fileID: 1659956011}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3826,7 +3337,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1659956010
 MonoBehaviour:
@@ -3855,25 +3366,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f670958a589ff42b42e2ce65f6fe59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  marcador: 0000000000000000
+  saqueDeCentro: 0
   balon: {fileID: 627983458}
   jugadoresBlanco:
-  - {fileID: 1095429226}
-  - {fileID: 1481215822}
-  - {fileID: 1187353649}
+  - {fileID: 113972993}
+  - {fileID: 1291314315}
+  - {fileID: 340160241}
+  - {fileID: 1943250626}
+  - {fileID: 1719209125}
   jugadoresNegro:
+  - {fileID: 393319744}
+  - {fileID: 1653133236}
   - {fileID: 274160012}
-  - {fileID: 1362938299}
-  - {fileID: 1338113633}
+  - {fileID: 992739319}
+  - {fileID: 41491791}
   terreno: {fileID: 0}
-  jugSeleccionado: {fileID: 0}
+  casillaCentral: {fileID: 0}
+  futbolista: {fileID: 0}
   canvasAccion: {fileID: 846720466}
   canvasControl: {fileID: 2026933612}
   canvasControlCabeza: {fileID: 264108805}
-  estadoTurno: 0
-  accion: 0
-  tiroCabeza: 0
+  accion: 11
+  equipo_con_balon: 0
   turnoMax: 20
+--- !u!114 &1719209125 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+  m_PrefabInstance: {fileID: 536738237}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1837452772
 GameObject:
   m_ObjectHideFlags: 0
@@ -4361,7 +3887,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1659956011}
         m_TargetAssemblyTypeName: PartidoManager, Assembly-CSharp
-        m_MethodName: Control
+        m_MethodName: ControlMover
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4409,6 +3935,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1940442364}
   m_CullTransparentMesh: 1
+--- !u!114 &1943250626 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+  m_PrefabInstance: {fileID: 1635424219}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2026933609
 GameObject:
   m_ObjectHideFlags: 0
@@ -4504,13 +4041,74 @@ RectTransform:
   - {fileID: 33843494}
   - {fileID: 1322366764}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &2071417086
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5473869806666385108, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3c8186aaf16969944bf9efa81dd114fa, type: 3}
+    - target: {fileID: 5473869806666385109, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Name
+      value: Futbolista (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_RootOrder
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 13.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
 --- !u!1 &2085442270
 GameObject:
   m_ObjectHideFlags: 0
@@ -4596,7 +4194,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1659956011}
         m_TargetAssemblyTypeName: PartidoManager, Assembly-CSharp
-        m_MethodName: Cabezazo
+        m_MethodName: CabezazoPase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4644,159 +4242,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2085442270}
   m_CullTransparentMesh: 1
---- !u!1 &2097188471
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2097188476}
-  - component: {fileID: 2097188475}
-  - component: {fileID: 2097188474}
-  - component: {fileID: 2097188473}
-  - component: {fileID: 2097188472}
-  m_Layer: 7
-  m_Name: Fut_Negro (6)
-  m_TagString: Jugador
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!50 &2097188472
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097188471}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!114 &2097188473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097188471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484e01def9b9b3342a86bbf208c18f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  casilla: {fileID: 0}
-  gameManager: {fileID: 1659956008}
-  nombre: 
-  regate: 1
-  paseBajo: 0
-  paseAlto: 2
-  tiro: 3
-  cabezazo: 3
-  defensa: 2
-  velocidad: 2
-  control: 2
-  resistencia: 3
-  equipo: 0
-  numero: 3
-  tarjeta: 0
-  esPortero: 0
-  tieneBalon: 0
-  isSelected: 0
-  isActive: 0
---- !u!58 &2097188474
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097188471}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0246377, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.6
---- !u!212 &2097188475
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097188471}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 34f5a9d4eedd34b43878bec51bc9b205, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.44, y: 1.44}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &2097188476
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097188471}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.03, y: 14.97, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2111759642
 GameObject:
   m_ObjectHideFlags: 0
@@ -5064,3 +4509,64 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113023366}
   m_CullTransparentMesh: 1
+--- !u!1001 &5473869806400790365
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5473869806666385105, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1659956008}
+    - target: {fileID: 5473869806666385109, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_Name
+      value: Futbolista
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_RootOrder
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 15.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5473869806666385111, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b5d11302e0fd1fe459687f54b3e30a90, type: 3}
