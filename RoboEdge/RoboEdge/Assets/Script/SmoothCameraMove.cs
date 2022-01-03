@@ -9,8 +9,8 @@ public class SmoothCameraMove : MonoBehaviour
     {
         if (player != null)
         {
-            transform.rotation = Quaternion.Euler(1f * player.transform.position.y, 
-                0.5f * player.transform.position.x, 
+            transform.rotation = Quaternion.Euler(1f * player.transform.position.y,
+                0.5f * player.transform.position.x,
                 0.0f);
         }
     }

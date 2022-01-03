@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnemyAimed : Enemy
 {
     #region Fields
-    private float seconds;
     private bool isCoroutinePlaying;
     #endregion
     #region Unity methods
@@ -12,13 +11,13 @@ public class EnemyAimed : Enemy
     {
         speed = 20.0f;
         life = 20;
-        repeatFire = 0;
+        repeatFireTime = 0;
         isCoroutinePlaying = false;
     }
 
     void Start()
     {
-        Init();
+        Initialize();
     }
 
     void Update()
@@ -44,7 +43,7 @@ public class EnemyAimed : Enemy
         }
     }
 
-    protected override void Init()
+    protected override void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         enemyTargeted = transform.Find("Target").gameObject;

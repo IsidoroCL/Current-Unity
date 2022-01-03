@@ -11,9 +11,21 @@ PrefabInstance:
       propertyPath: leftOrRight
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2770568366519496983, guid: f65eda78f18c8b9499b9f217be2a5272, type: 3}
+      propertyPath: startFireTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2770568366519496983, guid: f65eda78f18c8b9499b9f217be2a5272, type: 3}
+      propertyPath: repeatFireTime
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6654380594922901586, guid: f65eda78f18c8b9499b9f217be2a5272, type: 3}
       propertyPath: m_Name
-      value: Enemy Oblicuos Left
+      value: Enemy Oblicuos Left Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654380594922901586, guid: f65eda78f18c8b9499b9f217be2a5272, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 6654380594922901590, guid: f65eda78f18c8b9499b9f217be2a5272, type: 3}
       propertyPath: m_RootOrder

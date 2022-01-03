@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
@@ -16,22 +14,22 @@ public class WaveScenario : ScriptableObject
 
     [SerializeField]
     WaveAndTime[] waves = { new WaveAndTime() };
-    float contador;
+    float timePassed;
     int i;
 
-    public void Init()
+    public void Initialize()
     {
-        contador = 0;
+        timePassed = 0;
         i = 0;
     }
 
     public bool Progress()
     {
         if (i >= waves.Length) return true;
-        contador += Time.deltaTime;
-        if (contador >= waves[i].timeInterval)
+        timePassed += Time.deltaTime;
+        if (timePassed >= waves[i].timeInterval)
         {
-            contador -= waves[i].timeInterval;
+            timePassed -= waves[i].timeInterval;
             waves[i].wave.Activate();
             Debug.Log("Wave: " + i);
             i++;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyScrollX : Enemy
@@ -16,12 +14,12 @@ public class EnemyScrollX : Enemy
     {
         speed = 5.0f;
         life = 1;
-        startTime = 5;
-        repeatFire = 2.8f + Random.Range(0.0f, 1.0f);
+        startFireTime = 5;
+        repeatFireTime = 2.8f + Random.Range(0.0f, 1.0f);
     }
     void Start()
     {
-        Init();
+        Initialize();
     }
     void Update()
     {
@@ -31,7 +29,7 @@ public class EnemyScrollX : Enemy
     #region Methods
     protected override void Move()
     {
-        switch(direction)
+        switch (direction)
         {
             case Direction.Up:
                 transform.Translate(Vector3.up * speed * Time.deltaTime);
@@ -61,8 +59,8 @@ public class EnemyScrollX : Enemy
                     Destroy(gameObject);
                 }
                 break;
-        } 
-        
+        }
+
     }
     #endregion
 }

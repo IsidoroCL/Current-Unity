@@ -26,9 +26,8 @@ public class ObjectPooler : MonoBehaviour
     {
         for (int i = 0; i < pooledObjects.Count; i++)
         {
-            // if the pooled objects is NOT active, return that object 
             if (!pooledObjects[i].activeInHierarchy) return pooledObjects[i];
-        } 
+        }
         return null;
     }
     #endregion

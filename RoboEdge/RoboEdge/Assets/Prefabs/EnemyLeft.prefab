@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 7266653143892153336}
   m_Layer: 9
   m_Name: EnemyLeft
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -344,7 +344,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3881192367245245714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.33276, y: 35.664085, z: 11.163092}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2783961534519774140}
@@ -415,8 +415,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   life: 1
-  startTime: 2
-  repeatFire: 1.5
+  startFireTime: 3
+  repeatFireTime: 3
   explosion: {fileID: 1354392912790353106, guid: 7abab4832d4ba1e47aa5c30b2c7d06ff, type: 3}
   damaged: {fileID: 4605214604659857517, guid: d453d076f4a070b47b4a2eebf61ce729, type: 3}
   bulletPool: {fileID: 0}

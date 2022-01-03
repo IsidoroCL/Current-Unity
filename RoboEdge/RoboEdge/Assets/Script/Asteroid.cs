@@ -4,12 +4,12 @@ public class Asteroid : MonoBehaviour
 {
     #region Fields
     [SerializeField]
-    private float maxRotation = 90;
+    private float maximumRotation = 90;
     private float speed;
     private int life;
-    private Vector3 rotationAsteroid;
+    private Vector3 vectorRotationAsteroid;
     private Vector3 direction;
-    private Rigidbody rb;
+    private Rigidbody rigidbodyAsteroid;
 
     [SerializeField]
     private GameObject asteroid;
@@ -21,30 +21,17 @@ public class Asteroid : MonoBehaviour
     #region Unity methods
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        rigidbodyAsteroid = GetComponent<Rigidbody>();
         speed = 5;
         direction = new Vector3(1, 0, -2);
-
-        //Prefab mass = 100
-        life = Mathf.FloorToInt(rb.mass / 20); 
-        
-        //Random Scale
-        float baseScale = rb.mass / 10;
-        float fluctuationScale = baseScale / 5;
-        float xScale = baseScale + Random.Range(-fluctuationScale, fluctuationScale);
-        float yScale = baseScale + Random.Range(-fluctuationScale, fluctuationScale);
-        float zScale = baseScale + Random.Range(-fluctuationScale, fluctuationScale);
-        transform.localScale = new Vector3(xScale, yScale, zScale);
-
-        //Random rotation
-        rotationAsteroid = new Vector3(Random.Range(-maxRotation, maxRotation),
-            Random.Range(-maxRotation, maxRotation),
-            Random.Range(-maxRotation, maxRotation));
+        SetLife();
+        SetRandomScale();
+        SetRandomRotation();
     }
 
     void FixedUpdate()
     {
-        rb.AddTorque(rotationAsteroid);
+        rigidbodyAsteroid.AddTorque(vectorRotationAsteroid);
         Move();
     }
     private void OnTriggerEnter(Collider other)
@@ -64,13 +51,7 @@ public class Asteroid : MonoBehaviour
                 other.gameObject.SetActive(false);
                 life -= 1;
             }
-            Instantiate(damaged, transform.position, Quaternion.identity);
-            if (life < 1)
-            {
-                CreateChild();
-                Instantiate(explosion, transform.position, Quaternion.identity);
-                Destroy(gameObject);
-            }
+            CheckLife();
         }
     }
     #endregion
@@ -83,18 +64,52 @@ public class Asteroid : MonoBehaviour
 
     private void CreateChild()
     {
-        int numChild = Random.Range(2, 7);
-        float childMass = rb.mass / numChild;
+        int numberOfChilds = Random.Range(2, 7);
+        float childMass = rigidbodyAsteroid.mass / numberOfChilds;
         if (childMass > 2)
         {
-            for (int i = 0; i < numChild; i++)
+            for (int i = 0; i < numberOfChilds; i++)
             {
                 Vector3 childPos = new Vector3(transform.position.x, transform.position.y + (i / 2), transform.position.z - (i / 2));
                 GameObject childAsteroid = Instantiate(asteroid, childPos, Quaternion.identity);
                 Rigidbody childAsteroid_rb = childAsteroid.GetComponent<Rigidbody>();
                 childAsteroid_rb.mass = childMass;
-                childAsteroid_rb.AddExplosionForce(rb.mass, transform.position, rb.mass / 10);
+                childAsteroid_rb.AddExplosionForce(rigidbodyAsteroid.mass, transform.position, rigidbodyAsteroid.mass / 10);
             }
+        }
+    }
+
+    private void SetRandomScale()
+    {
+        float baseScale = rigidbodyAsteroid.mass / 10;
+        float fluctuationScale = baseScale / 5;
+        float xScale = baseScale + Random.Range(-fluctuationScale, fluctuationScale);
+        float yScale = baseScale + Random.Range(-fluctuationScale, fluctuationScale);
+        float zScale = baseScale + Random.Range(-fluctuationScale, fluctuationScale);
+        transform.localScale = new Vector3(xScale, yScale, zScale);
+    }
+
+    private void SetRandomRotation()
+    {
+        vectorRotationAsteroid = new Vector3(Random.Range(-maximumRotation, maximumRotation),
+            Random.Range(-maximumRotation, maximumRotation),
+            Random.Range(-maximumRotation, maximumRotation));
+    }
+
+    private void SetLife()
+    {
+        //Prefab mass = 100
+        life = Mathf.FloorToInt(rigidbodyAsteroid.mass / 20);
+    }
+
+    private void CheckLife()
+    {
+        Instantiate(damaged, transform.position, Quaternion.identity);
+        if (life < 1)
+        {
+            CreateChild();
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
     #endregion

@@ -29,10 +29,9 @@ public class PointAndShoot : MonoBehaviour
         target = -Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z));
 
         //X and Y coordenates are multipled by 2 because is the limit of the screen in perspective camera
-        crosshairs.transform.position = new Vector3(target.x *2, target.y *2, crosshairs.transform.position.z);
+        crosshairs.transform.position = new Vector3(target.x * 2, target.y * 2, crosshairs.transform.position.z);
         if (player != null)
         {
-            //if (Input.GetButtonDown("Fire1")) FireBullet();
             if (Input.GetButton("Fire1"))
             {
                 shootAccumulated += Time.deltaTime;
@@ -43,7 +42,7 @@ public class PointAndShoot : MonoBehaviour
                 FireBullet();
                 shootAccumulated = 1f;
             }
-        }  
+        }
     }
     #endregion
     #region Methods
@@ -51,12 +50,8 @@ public class PointAndShoot : MonoBehaviour
     {
         anim.SetTrigger("Shooting");
         shootSound.Play();
-        GameObject b = pool.GetPooledObject() as GameObject;
-        b.transform.position = player.transform.position;
-        //Return the bullet to its original scale 
-        b.transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
-        b.transform.localScale *= shootAccumulated;
-        b.SetActive(true);
+        GameObject bullet = pool.GetPooledObject() as GameObject;
+        bullet.GetComponent<Bullet>().SetConfiguration(player.transform.position, new Vector3(0.4f, 0.4f, 0.4f), shootAccumulated);
     }
     #endregion
 }

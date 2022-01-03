@@ -18,19 +18,19 @@ public class EnemyOblicous : Enemy
     #region Unity Methods
     void Start()
     {
-        Init();
+        Initialize();
     }
 
-   
+
     void Update()
     {
         Move();
     }
     #endregion
     #region Methods
-    protected override void Init()
+    protected override void Initialize()
     {
-        base.Init();
+        base.Initialize();
         if (leftOrRight == Direction.Left)
         {
             direction = new Vector3(-direction.x, direction.y, direction.z);
@@ -51,7 +51,7 @@ public class EnemyOblicous : Enemy
                     * speed * Time.deltaTime, Space.World);
             }
         }
-             
+
         if (transform.position.z < Camera.main.transform.position.z) Destroy(gameObject);
     }
     #endregion

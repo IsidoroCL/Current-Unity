@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8033571138713809481}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.4, y: -15.22, z: 74.3}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6710377d47a870546a21153ee289e98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maximumRotation: 90
   asteroid: {fileID: 8033571138713809481}
-  maxRotation: 90
   damaged: {fileID: 4605214604659857517, guid: d453d076f4a070b47b4a2eebf61ce729, type: 3}
   explosion: {fileID: 1354392912790353106, guid: 7abab4832d4ba1e47aa5c30b2c7d06ff, type: 3}

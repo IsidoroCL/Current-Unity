@@ -36,5 +36,5 @@ public class LifeBarHandler : MonoBehaviour
         HealthBarImage.color = healthColor;
     }
     #endregion
-    
+
 }

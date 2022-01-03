@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -10,7 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float speed;
     private Vector3 direction;
-    private Rigidbody r;
+    private Rigidbody rigidbodyBullet;
 
     [SerializeField]
     private string target;
@@ -19,7 +17,7 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         speed = 60.0f;
-        r = GetComponent<Rigidbody>();
+        rigidbodyBullet = GetComponent<Rigidbody>();
     }
 
     private void OnEnable()
@@ -27,14 +25,23 @@ public class Bullet : MonoBehaviour
         if (cross == null) cross = GameObject.FindGameObjectWithTag(target);
         if (cross != null)
         {
-            r.velocity = Vector3.zero;
+            rigidbodyBullet.velocity = Vector3.zero;
             Vector3 difference = cross.transform.position - transform.position;
             float distance = difference.magnitude;
             direction = difference / distance;
             direction = difference;
             direction.Normalize();
-            r.velocity = direction * speed;
+            rigidbodyBullet.velocity = direction * speed;
         }
+    }
+    #endregion
+    #region Methods
+    public void SetConfiguration(Vector3 position, Vector3 scale, float shootAccumulated)
+    {
+        transform.position = position;
+        transform.localScale = scale;
+        transform.localScale *= shootAccumulated;
+        gameObject.SetActive(true);
     }
     #endregion
 }

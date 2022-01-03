@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnemySmall : Enemy
 {
     #region Fields
-    private static EnemySmall[,] arrayEnemy = new EnemySmall[20,5];
-    private Vector3 newPosition;
+    private static EnemySmall[,] arrayEnemy = new EnemySmall[20, 5];
+    private Vector3 targetPosition;
     [SerializeField]
     private GameObject enemySmallPrefab;
     #endregion
@@ -13,12 +13,12 @@ public class EnemySmall : Enemy
     {
         speed = 25.0f;
         life = 1;
-        startTime = 2;
-        repeatFire = 4;
+        startFireTime = 2;
+        repeatFireTime = 4;
     }
     void Start()
     {
-        Init();
+        Initialize();
     }
     void Update()
     {
@@ -26,11 +26,37 @@ public class EnemySmall : Enemy
     }
     #endregion
     #region Methods
-    protected override void Init()
+    protected override void Initialize()
     {
-        base.Init();
+        base.Initialize();
+        targetPosition = CalculatePosition();
+        InvokeRepeating("Duplicate", 2.7f, 4.7f);
+    }
+    protected override void Move()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+    }
 
-        //Put the enemy in the correct position
+    protected override void Fire()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            GameObject bulletOne = bulletPool.GetPooledObject() as GameObject;
+            if (bulletOne != null)
+            {
+                bulletOne.transform.position = transform.position - new Vector3(0, 0, i);
+                bulletOne.SetActive(true);
+            }
+        }
+    }
+
+    protected void Duplicate()
+    {
+        Instantiate(enemySmallPrefab, transform.position, Quaternion.identity);
+    }
+
+    protected Vector3 CalculatePosition()
+    {
         int posX = -9;
         int posY = -2;
         bool hasPosition = false;
@@ -51,39 +77,7 @@ public class EnemySmall : Enemy
         }
         if (!hasPosition) Destroy(gameObject);
 
-        newPosition = new Vector3(posX, posY, 10);
-        InvokeRepeating("Duplicate", 2.7f, 4.7f);
-    }
-    protected override void Move()
-    { 
-        transform.position = Vector3.MoveTowards(transform.position, newPosition, speed * Time.deltaTime);
-    }
-
-    protected override void Fire()
-    {
-        GameObject b = bulletPool.GetPooledObject() as GameObject;
-        GameObject c = bulletPool.GetPooledObject() as GameObject;
-        GameObject d = bulletPool.GetPooledObject() as GameObject;
-        if (b != null)
-        {
-            b.transform.position = transform.position;
-            b.SetActive(true);
-        }
-        if (c != null)
-        {
-            c.transform.position = transform.position - Vector3.forward;
-            c.SetActive(true);
-        }
-        if (d != null)
-        {
-            d.transform.position = transform.position - Vector3.forward *2;
-            d.SetActive(true);
-        }
-    }
-
-    protected void Duplicate()
-    {
-        Instantiate(enemySmallPrefab, transform.position, Quaternion.identity);
+        return new Vector3(posX, posY, 10);
     }
     #endregion
 }

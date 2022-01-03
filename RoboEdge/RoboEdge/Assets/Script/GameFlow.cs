@@ -8,22 +8,10 @@ public class GameFlow : MonoBehaviour
     private GameObject player;
     private AudioSource mainMusic;
     public static GameFlow sharedInstance;
-    private bool final;
+    private bool endOfScenario;
 
     [SerializeField]
     WaveScenario scenario;
-
-    [SerializeField]
-    private GameObject[] enemies;
-    //0: Simple
-    //1: Aimed
-    //2: Spiral
-    //3: ScrollX
-    //4: Small
-    //5: Asteroids
-
-    [SerializeField]
-    private float instantiateDistance;
 
     [SerializeField]
     private GameObject textWin;
@@ -33,24 +21,21 @@ public class GameFlow : MonoBehaviour
     {
         sharedInstance = this;
         mainMusic = GetComponent<AudioSource>();
-        final = false;
+        endOfScenario = false;
     }
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         mainMusic.PlayDelayed(1.0f);
-        //StartCoroutine(Waves());
-        scenario.Init();
+        scenario.Initialize();
     }
     void Update()
     {
-        final = scenario.Progress();
+        endOfScenario = scenario.Progress();
         if (Input.GetKey(KeyCode.Escape)) Application.Quit();
-        if (final)
+        if (endOfScenario && !ExistsEnemiesInGame())
         {
-            //If there are not any final enemies, then player won
-            EnemySmall[] enemies = GameObject.FindObjectsOfType<EnemySmall>();
-            if (enemies.Length < 1) Win();
+            Win();
         }
     }
     #endregion
@@ -70,6 +55,13 @@ public class GameFlow : MonoBehaviour
     private void Win()
     {
         textWin.SetActive(true);
+    }
+
+    private bool ExistsEnemiesInGame()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        if (enemies.Length > 0) return true;
+        else return false;
     }
     #endregion
 }

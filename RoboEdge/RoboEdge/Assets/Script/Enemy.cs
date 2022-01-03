@@ -9,9 +9,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected int life;
     [SerializeField]
-    protected float startTime;
+    protected float startFireTime;
     [SerializeField]
-    protected float repeatFire;
+    protected float repeatFireTime;
 
     [SerializeField]
     protected GameObject explosion;
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     #region Unity methods
     void Start()
     {
-        Init();
+        Initialize();
     }
     void Update()
     {
@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Line"))
         {
-            if (enemyTargeted != null) enemyTargeted.SetActive(true);            
+            if (enemyTargeted != null) enemyTargeted.SetActive(true);
         }
         if (other.gameObject.CompareTag("Bullet"))
         {
@@ -53,11 +53,7 @@ public class Enemy : MonoBehaviour
                 other.gameObject.SetActive(false);
                 life -= 1;
             }
-            Instantiate(damaged, transform.position, Quaternion.identity);
-            if (life < 1)
-            {
-                StartCoroutine(Explosion());
-            }
+            CheckLife();
         }
     }
 
@@ -72,11 +68,11 @@ public class Enemy : MonoBehaviour
     #region Methods
     protected virtual void Fire()
     {
-        GameObject b = bulletPool.GetPooledObject() as GameObject;
-        if (b != null)
+        GameObject bullet = bulletPool.GetPooledObject() as GameObject;
+        if (bullet != null)
         {
-            b.transform.position = transform.position;
-            b.SetActive(true);
+            bullet.transform.position = transform.position;
+            bullet.SetActive(true);
         }
     }
 
@@ -89,13 +85,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    protected virtual void Init()
+    protected virtual void Initialize()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         enemyTargeted = transform.Find("Target").gameObject;
         enemyTargeted.SetActive(false);
         bulletPool = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ObjectPooler>();
-        InvokeRepeating("Fire", startTime, repeatFire + Random.Range(-0.1f, 0.5f));
+        InvokeRepeating("Fire", startFireTime, repeatFireTime + Random.Range(-0.1f, 0.5f));
     }
 
     protected IEnumerator Explosion()
@@ -103,6 +99,15 @@ public class Enemy : MonoBehaviour
         Instantiate(explosion, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
+    }
+
+    protected void CheckLife()
+    {
+        Instantiate(damaged, transform.position, Quaternion.identity);
+        if (life < 1)
+        {
+            StartCoroutine(Explosion());
+        }
     }
     #endregion
 }

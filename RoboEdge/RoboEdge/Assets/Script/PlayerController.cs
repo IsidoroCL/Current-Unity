@@ -23,6 +23,20 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
+        transform.Translate(Vector3.right * horizontal * speed * Time.deltaTime);
+        transform.Translate(Vector3.up * vertical * speed * Time.deltaTime);
+
+        if (transform.position.x < -offsetX) transform.position = new Vector3(-offsetX, transform.position.y);
+        if (transform.position.x > offsetX) transform.position = new Vector3(offsetX, transform.position.y);
+        if (transform.position.y < -offsetY) transform.position = new Vector3(transform.position.x, -offsetY);
+        if (transform.position.y > offsetY) transform.position = new Vector3(transform.position.x, offsetY);
+        PlayMotorAnimation(vertical, horizontal);
+    }
+    #endregion
+
+    #region Methods
+    private void PlayMotorAnimation(float vertical, float horizontal)
+    {
         if (vertical != 0 ||
             horizontal != 0)
         {
@@ -32,14 +46,6 @@ public class PlayerController : MonoBehaviour
         {
             motor.Stop();
         }
-        // Move Player according to Input 
-        transform.Translate(Vector3.right * horizontal * speed * Time.deltaTime);
-        transform.Translate(Vector3.up * vertical * speed * Time.deltaTime);
-        
-        if (transform.position.x < -offsetX) transform.position = new Vector3(-offsetX, transform.position.y);
-        if (transform.position.x > offsetX) transform.position = new Vector3(offsetX, transform.position.y);
-        if (transform.position.y < -offsetY) transform.position = new Vector3(transform.position.x, -offsetY);
-        if (transform.position.y > offsetY) transform.position = new Vector3(transform.position.x, offsetY);
     }
     #endregion
 }

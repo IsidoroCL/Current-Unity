@@ -12,11 +12,11 @@ public class EnemySpiral : Enemy
     {
         speed = 5.0f;
         life = 1;
-        repeatFire = 3;
+        repeatFireTime = 3;
     }
     void Start()
     {
-        Init();
+        Initialize();
     }
 
     void Update()
@@ -31,8 +31,11 @@ public class EnemySpiral : Enemy
         {
             base.Move();
         }
-        
-        //Spiral movement
+        SpiralMovement();
+    }
+
+    protected void SpiralMovement()
+    {
         timeCounter += Time.deltaTime;
         float x = Mathf.Cos(timeCounter);
         float y = Mathf.Sin(timeCounter);
