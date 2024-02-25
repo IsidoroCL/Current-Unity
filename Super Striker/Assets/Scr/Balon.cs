@@ -13,15 +13,23 @@ public class Balon : MonoBehaviour
 
     //Variables para gestionar el movimiento del balón
     public bool pausarMovimientoBalon;
+    public float speed = 15f;
     private bool stopMover;
     private CircleCollider2D balonCollider;
-    private bool nuevaCasilla;
     public AccionState accionState;
 
     public Jugador Jugador
     {
         get { return jugador; }
         set {
+            if (value == null)
+            {
+                partidoManager.ultimoFutbolistaConBalon = jugador;
+            }
+            else
+            {
+                partidoManager.ultimoFutbolistaConBalon = value;
+            }
             jugador = value;
         }
     }
@@ -32,7 +40,6 @@ public class Balon : MonoBehaviour
         stopMover = false;
         balonCollider = GetComponent<CircleCollider2D>();
         balonCollider.enabled = false;
-        nuevaCasilla = false;
     }
 
     void Update()
@@ -69,13 +76,16 @@ public class Balon : MonoBehaviour
         balonCollider.enabled = true;
     }
 
+    public void DesactivarCollider()
+    {
+        balonCollider.enabled = false;
+    }
+
     private IEnumerator Mover(Hex casilla_objetivo)
     {
-        casilla = casilla_objetivo;
         if (jugador != null) jugador.tieneBalon = false;
         //Movimiento del balon 
         Vector3 destino = casilla_objetivo.transform.position;
-        float speed = 12f;
 
         //Mover balón a casilla seleccionada
         while (transform.position != destino)
@@ -95,6 +105,7 @@ public class Balon : MonoBehaviour
         //Asignamos el nuevo jugador al balon y le hacemos poseedor de la pelota
         if (transform.position == destino)
         {
+            casilla = casilla_objetivo;
             if (casilla_objetivo.jugador != null)
             {
                 jugador = casilla_objetivo.jugador;

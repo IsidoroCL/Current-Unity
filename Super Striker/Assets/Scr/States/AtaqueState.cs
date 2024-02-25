@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +17,8 @@ public class AtaqueState : IState
         Debug.Log("ATAQUE");
         partidoManager.Numero_turno++;
         partidoManager.ComprobarJugadorCercano(partidoManager.balon.casilla);
-        if (partidoManager.balon.jugador.equipo == 0)
+        if (partidoManager.balon.Jugador == null) { Debug.Log("***BALON SIN JUGADOR***"); }
+        if (partidoManager.ultimoFutbolistaConBalon.equipo == 0)
         {
             foreach (Jugador jug2 in partidoManager.jugadoresNegro)
             {
@@ -42,7 +42,7 @@ public class AtaqueState : IState
             GameObject selectedObject = partidoManager.SelectedObjectByMouse();
             if (selectedObject == null) return;
             if (selectedObject.GetComponent<Jugador>() &&
-                selectedObject.GetComponent<Jugador>().IsSelectable && 
+                selectedObject.GetComponent<Jugador>().IsSelectable &&
                 selectedObject.GetComponent<Jugador>().IsActive)
             {
                 jugadorSelected = selectedObject.GetComponent<Jugador>();

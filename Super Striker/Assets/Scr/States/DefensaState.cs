@@ -16,7 +16,7 @@ public class DefensaState : IState
     public void Enter()
     {
         Debug.Log("DEFENSA");
-        if (partidoManager.balon.jugador.equipo == 0)
+        if (partidoManager.ultimoFutbolistaConBalon.equipo == 0)
         {
             foreach (Jugador jug2 in partidoManager.jugadoresBlanco)
             {
@@ -60,7 +60,17 @@ public class DefensaState : IState
                 partidoManager.LimpiarCasillas(casillas);
             }
         }
-        if (jugadoresMovidos > 2) partidoManager.SetState(new AccionState(partidoManager));
+        if (jugadoresMovidos > 2)
+        {
+            if (partidoManager.balon.jugador != null)
+            {
+                partidoManager.SetState(new AccionState(partidoManager));
+            }
+            else
+            {
+                partidoManager.SetState(new AtaqueState(partidoManager));
+            }
+        }
     }
 
     public void Exit()
@@ -78,6 +88,16 @@ public class DefensaState : IState
 
     public void ReceiveAction(Accion accion)
     {
-        if (accion == Accion.NADA) partidoManager.SetState(new DefensaState(partidoManager));
+        if (accion == Accion.NADA)
+        {
+            if (partidoManager.balon.jugador != null)
+            {
+                partidoManager.SetState(new AccionState(partidoManager));
+            }
+            else
+            {
+                partidoManager.SetState(new AtaqueState(partidoManager));
+            }
+        }
     }
 }

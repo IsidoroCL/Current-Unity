@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Jugador : MonoBehaviour
 {
@@ -10,13 +11,14 @@ public class Jugador : MonoBehaviour
     List<Hex> casillas; 
 
     //El gameManager para obtener datos del estado del juego
-    public GameObject gameManager;
-
     Map terreno;
     PartidoManager partidoManager;
 
     //Atributos de la carta
     //Luego hay que cambiar para que se asocie a la carta los valores
+    //Cada carta puede ser un Scriptable Object
+    public CartaJugador jugadorBase;
+
     public string nombre;
 
     [Range(1,5)]
@@ -45,15 +47,43 @@ public class Jugador : MonoBehaviour
 
     public bool esPortero;
 
+    //Posición inicial
+    [Range(0, 24)] public int posicionInicialX;
+    [Range(0, 11)] public int posicionInicialY;
+
     //Testea si tiene o no la pelota el jugador, si es seleccionable y si ha sido ya usado en el turno
     public bool tieneBalon = false;
     public bool isSelected = false;
     public bool isActive;
+    public float speed = 10f;
 
     //Gestiona el movimiento casilla a casilla
     private bool nuevaCasilla;
 
+    //Los gráficos del jugador
+    private SpriteRenderer spriteRenderer;
+    private TextMeshPro camiseta;
+    [SerializeField] private GameObject aura;
+
     //PROPIEDADES
+    public CartaJugador JugadorBase
+    {
+        get { return jugadorBase; }
+        set 
+        { 
+            jugadorBase = value;
+            regate = jugadorBase.regate;
+            paseBajo = jugadorBase.paseBajo;
+            paseAlto = jugadorBase.paseAlto;
+            tiro = jugadorBase.tiro;
+            cabezazo = jugadorBase.cabezazo;
+            defensa = jugadorBase.defensa;
+            velocidad = jugadorBase.velocidad;
+            control = jugadorBase.control;
+            resistencia = jugadorBase.resistencia;
+        }
+    }
+    
     public Hex Casilla
     {
         get { return casilla; }
@@ -74,12 +104,12 @@ public class Jugador : MonoBehaviour
             isSelected = value;
             if (isSelected)
             {
-                //Implementar iluminar
-                
+                if (!isActive) return;
+                aura.SetActive(true);
             }
             else
             {
-                //Quitar iluminación
+                aura.SetActive(false);
             }
         }
     }
@@ -93,21 +123,25 @@ public class Jugador : MonoBehaviour
             if (isActive)
             {
                 //Normal
-                Color tmp = GetComponent<SpriteRenderer>().color;
+                Color tmp = spriteRenderer.color;
                 tmp.a = 1.0f;
-                GetComponent<SpriteRenderer>().color = tmp;
+                spriteRenderer.color = tmp;
             }
             else
             {
                 //transparente
-                Color tmp = GetComponent<SpriteRenderer>().color;
+                Color tmp = spriteRenderer.color;
                 tmp.a = 0.4f;
-                GetComponent<SpriteRenderer>().color = tmp;
+                spriteRenderer.color = tmp;
             }
         }
     }
 
-
+    private void Awake()
+    {
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        camiseta = GetComponentInChildren<TextMeshPro>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -118,8 +152,20 @@ public class Jugador : MonoBehaviour
         partidoManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<PartidoManager>();
         terreno = GameObject.FindGameObjectWithTag("GameController").GetComponent<Map>();
         casillas = new List<Hex>();
-        
 
+        if (equipo == 0) 
+        { 
+            spriteRenderer.color = Color.black;
+            camiseta.color = Color.white;
+        }
+        else 
+        { 
+            spriteRenderer.color = Color.white;
+            camiseta.color= Color.black;
+        }
+        
+        camiseta.text = numero.ToString();
+        aura.SetActive(false);
     }
 
     public IEnumerator MoverJugador(Hex casilla_objetivo)
@@ -128,7 +174,6 @@ public class Jugador : MonoBehaviour
         Vector3 destino = new Vector3(casilla_objetivo.transform.position.x,
                                        casilla_objetivo.transform.position.y,
                                         -2);
-        float speed = 5f;
         //Mover jugador a casilla seleccionada
         while (transform.position != destino)
         {
@@ -150,6 +195,7 @@ public class Jugador : MonoBehaviour
         {
             tieneBalon = true;
             partidoManager.balon.jugador = this;
+            partidoManager.ultimoFutbolistaConBalon = this;
         }
     }
 
@@ -169,7 +215,6 @@ public class Jugador : MonoBehaviour
     public void Activar()
     {
         IsActive = true;
-
     }
 
     public void Desactivar()

@@ -21,7 +21,6 @@ public class ControlState : AccionState
         Debug.Log("Accion: " + accion);
         balon = partidoManager.balon;
         balon.accionState = this;
-        jugadorConBalon = balon.jugador;
         jugadoresEquiposDistintos = false;
         jugadorUnoElegido = false;
         switch (accion)
@@ -37,9 +36,9 @@ public class ControlState : AccionState
                 break;
         }
         //accion = Accion.NULL;
-        if (jugadorConBalon != null)
+        if (balon.jugador != null)
         {
-            int exitos_control = jugadorConBalon.Tirada(jugadorConBalon.control);
+            int exitos_control = balon.jugador.Tirada(balon.jugador.control);
             Debug.Log("Éxitos control: " + exitos_control);
             if (exitos_control < 2) partidoManager.SetState(new AtaqueState(partidoManager));
         }
@@ -110,13 +109,13 @@ public class ControlState : AccionState
 
     private void PaseDeCabeza()
     {
-        casillas = jugadorConBalon.casilla.EncontrarVariosVecinos(4);
+        casillas = balon.jugador.casilla.EncontrarVariosVecinos(4);
         partidoManager.ActivarCasillas(casillas);
     }
 
     private void MoverJugador()
     {
-        casillas = jugadorConBalon.casilla.EncontrarVariosVecinos(1);
+        casillas = balon.jugador.casilla.EncontrarVariosVecinos(1);
         partidoManager.ActivarCasillas(casillas);
     }
 
@@ -149,20 +148,27 @@ public class ControlState : AccionState
         }
         if (jugadoresCerca.Count == 0)
         {
-            //Si no hay jugadores cerca, el balón sale por banda más cercana.
+            //Si no hay jugadores cerca, el balón se queda quieto.
             //Llamar Init
             Debug.Log("no hay jugadores cerca");
             Hex casilla_fuera;
-            if (balon.casilla.y > 6)
+            bool fuera_campo;
+            if (balon.casilla.y > 10)
             {
                 casilla_fuera = partidoManager.terreno.campo[balon.casilla.x, 11];
+                fuera_campo = true;
+            }
+            else if (balon.casilla.y < 1)
+            {
+                casilla_fuera = partidoManager.terreno.campo[balon.casilla.x, 0];
+                fuera_campo = true;
             }
             else
             {
-                casilla_fuera = partidoManager.terreno.campo[balon.casilla.x, 0];
+                partidoManager.SetState(new DefensaState(partidoManager));
+                return;
             }
-            partidoManager.SetState(new InitState(partidoManager, casilla_fuera, true));
-
+            partidoManager.SetState(new InitState(partidoManager, casilla_fuera, fuera_campo));
         }
         else
         {

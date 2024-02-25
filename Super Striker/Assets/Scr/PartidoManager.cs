@@ -20,6 +20,7 @@ public class PartidoManager : MonoBehaviour
     public Hex casillaCentral;
 
     public Jugador futbolista;
+    public Jugador ultimoFutbolistaConBalon;
 
     //Objetos para gestionar el canvas
     public Canvas canvasAccion;
@@ -81,14 +82,14 @@ public class PartidoManager : MonoBehaviour
         {
             Instantiate(futbolista, new Vector3())
         }*/
+        Invoke("ColocarJugadorEnPosicionInicial", 1);
         stateMachine.ChangeState(new InitState(this, casillaCentral, false));      
     }
 
-    // Update is called once per frame
     void Update()
     {
         stateMachine.Progress();
-        if (balon.jugador != null) equipo_con_balon = balon.jugador.equipo;
+        if (balon.jugador != null) equipo_con_balon = balon.jugador.equipo; //VER SI SE PUEDE CAMBIAR
     }
 
     /*
@@ -194,7 +195,6 @@ public class PartidoManager : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
         if (hit.collider != null)
         {
-            Debug.Log("Objeto pulsado: " + hit.collider.transform.gameObject.name);
             return hit.collider.transform.gameObject;
         }
         return null;
@@ -242,6 +242,24 @@ public class PartidoManager : MonoBehaviour
         stateMachine.SendAction(Accion.MOVER);
     }
 
+    public void ColocarJugadorEnPosicionInicial()
+    {
+        foreach (Jugador jugador in jugadoresBlanco)
+        {
+            jugador.IsActive = true;
+            jugador.Casilla = terreno.campo[jugador.posicionInicialX, jugador.posicionInicialY];
+            terreno.campo[jugador.posicionInicialX, jugador.posicionInicialY].jugador = jugador;
+            jugador.IsSelectable = true;
+        }
+        foreach (Jugador jugador in jugadoresNegro)
+        {
+            jugador.IsActive = true;
+            jugador.Casilla = terreno.campo[jugador.posicionInicialX, jugador.posicionInicialY];
+            terreno.campo[jugador.posicionInicialX, jugador.posicionInicialY].jugador = jugador;
+            jugador.IsSelectable = true;
+        }
+    }
+
     public void Gol()
     {
         //Cambiar marcador
@@ -256,6 +274,7 @@ public class PartidoManager : MonoBehaviour
             equipo_con_balon = 0;
         }
         Debug.Log("Negro: " + marcador[0] + " Blanco: " + marcador[1]);
+        ColocarJugadorEnPosicionInicial();
         saqueDeCentro = true;
         SetState(new InitState(this, casillaCentral, false));
 
@@ -263,15 +282,15 @@ public class PartidoManager : MonoBehaviour
 
     public void ComprobarJugadorCercano(Hex casilla)
     {
-        Jugador jugador = balon.jugador;
         List<Hex> vecinos_casilla = casilla.encontrarVecinos();
         foreach (Hex cas in vecinos_casilla)
         {
-            if (cas.jugador != null &&
+            if (cas.jugador != null && 
                 cas.jugador.IsActive &&
-                cas.jugador.equipo != jugador.equipo)
+                balon.jugador != null &&
+                cas.jugador.equipo != balon.jugador.equipo)
             {
-                HacerRegate(jugador, cas.jugador);
+                HacerRegate(balon.jugador, cas.jugador);
             }
         }
     }

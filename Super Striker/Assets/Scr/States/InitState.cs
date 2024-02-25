@@ -27,33 +27,13 @@ public class InitState : IState
         partidoManager.canvasAccion.enabled = false;
         partidoManager.canvasControl.enabled = false;
         partidoManager.canvasControlCabeza.enabled = false;
-        foreach (Jugador jugador in partidoManager.jugadoresBlanco)
-        {
-            jugador.IsActive = true;
-            jugadoresBlancosSinMover.Add(jugador);
-        }
-        foreach (Jugador jugador in partidoManager.jugadoresNegro)
-        {
-            jugador.IsActive = true;
-            jugadoresNegrosSinMover.Add(jugador);
-        }
+
         equipo_con_balon = partidoManager.equipo_con_balon;
+
+        //Se ejecuta cuando el balón sale fuera
         if (fueraDelCampo && equipo_con_balon == 0) equipo_con_balon = 1;
         else if (fueraDelCampo && equipo_con_balon == 1) equipo_con_balon = 0;
-        if (equipo_con_balon == 0)
-        {
-            foreach (Jugador jug2 in jugadoresBlancosSinMover)
-            {
-                jug2.IsSelectable = true;
-            }
-        }
-        else
-        {
-            foreach (Jugador jug2 in jugadoresNegrosSinMover)
-            {
-                jug2.IsSelectable = true;
-            }
-        }
+
         if (partidoManager.balon.Jugador != null)
         {
             partidoManager.balon.Jugador.tieneBalon = false;
@@ -101,11 +81,6 @@ public class InitState : IState
                         jugadorSelected.GetComponent<CircleCollider2D>().enabled = false;
                         jugadorSelected.Casilla = partidoManager.balon.casilla;
                         jugadorSelected.tieneBalon = true;
-                        
-                        if (jugadorSelected.equipo == 0) jugadoresNegrosSinMover.Remove(jugadorSelected);
-                        else jugadoresBlancosSinMover.Remove(jugadorSelected);
-                        partidoManager.DeselecteAll();
-                        ComprobarJugadoresMovidos(jugadorSelected);
                         jugadorSelected = null;
                         return;
                     }
@@ -127,13 +102,7 @@ public class InitState : IState
                 selectedObject.GetComponent<Hex>().activa &&
                 jugadorSelected != null)
             {
-                jugadorSelected.GetComponent<CircleCollider2D>().enabled = false;
                 jugadorSelected.Casilla = selectedObject.GetComponent<Hex>();
-                jugadorSelected.isSelected = false;
-                if (jugadorSelected.equipo == 0) jugadoresNegrosSinMover.Remove(jugadorSelected);
-                else jugadoresBlancosSinMover.Remove(jugadorSelected);
-                partidoManager.DeselecteAll();
-                ComprobarJugadoresMovidos(jugadorSelected);
                 jugadorSelected = null;
                 partidoManager.LimpiarCasillas(casillas);
             }
@@ -144,7 +113,7 @@ public class InitState : IState
     public void Exit()
     {
         partidoManager.saqueDeCentro = false;
-        partidoManager.DeselecteAll();
+        partidoManager.Invoke("DeselecteAll", 2);
         foreach (Jugador jugador in partidoManager.jugadoresBlanco)
         {
             jugador.GetComponent<CircleCollider2D>().enabled = true;
@@ -158,36 +127,21 @@ public class InitState : IState
     public void ReceiveAction(Accion accion)
     {
         this.accion = accion;
-    }
-
-    private void ComprobarJugadoresMovidos(Jugador jugador)
-    {
-        if (jugadoresBlancosSinMover.Count == 0 &&
-            jugadoresNegrosSinMover.Count == 0)
+        if (accion == Accion.NADA)
         {
-            JugadaTerminadaConExito();
-        }
-        else
-        {
-            if (jugador.equipo == 0)
+            if (partidoManager.balon.Jugador != null)
             {
-                foreach (Jugador jug2 in jugadoresBlancosSinMover)
-                {
-                    jug2.IsSelectable = true;
-                }
-            }
+                partidoManager.SetState(new AccionState(partidoManager));
+            } 
             else
             {
-                foreach (Jugador jug2 in jugadoresNegrosSinMover)
-                {
-                    jug2.IsSelectable = true;
-                }
+                Debug.Log("Elige un jugador para realizar el saque");
             }
         }
     }
 
     public virtual void JugadaTerminadaConExito()
     {
-            partidoManager.SetState(new AccionState(partidoManager));
+        partidoManager.SetState(new AccionState(partidoManager));
     }
 }
