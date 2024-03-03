@@ -15,7 +15,6 @@ public class Balon : MonoBehaviour
     public bool pausarMovimientoBalon;
     public float speed = 15f;
     private bool stopMover;
-    private CircleCollider2D balonCollider;
     public AccionState accionState;
 
     public Jugador Jugador
@@ -38,8 +37,6 @@ public class Balon : MonoBehaviour
     {
         pausarMovimientoBalon = false;
         stopMover = false;
-        balonCollider = GetComponent<CircleCollider2D>();
-        balonCollider.enabled = false;
     }
 
     void Update()
@@ -68,17 +65,6 @@ public class Balon : MonoBehaviour
     public void PararBalon()
     {
         StopAllCoroutines();
-        balonCollider.enabled = false;
-    }
-
-    public void ActivarCollider()
-    {
-        balonCollider.enabled = true;
-    }
-
-    public void DesactivarCollider()
-    {
-        balonCollider.enabled = false;
     }
 
     private IEnumerator Mover(Hex casilla_objetivo)
@@ -115,17 +101,6 @@ public class Balon : MonoBehaviour
             {
                 accionState.JugadaTerminadaConExito();
             }
-        }
-        
-        balonCollider.enabled = false;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "casilla")
-        {
-            casilla = collision.gameObject.GetComponent<Hex>();
-            accionState.ComprobarJugadorCercano(casilla);
         }
     }
 

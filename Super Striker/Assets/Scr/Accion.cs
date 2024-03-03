@@ -10,6 +10,7 @@ public enum Accion
     MOVER, 
     BALON_SUELTO,
     FALTA,
+    FUERA_CAMPO,
     NADA, 
     NULL 
 }

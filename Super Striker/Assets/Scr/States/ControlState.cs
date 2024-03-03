@@ -40,7 +40,7 @@ public class ControlState : AccionState
         {
             int exitos_control = balon.jugador.Tirada(balon.jugador.control);
             Debug.Log("Éxitos control: " + exitos_control);
-            if (exitos_control < 2) partidoManager.SetState(new AtaqueState(partidoManager));
+            if (exitos_control < 2) partidoManager.SetState(new AtaqueState(partidoManager, Accion.NULL));
         }
     }
 
@@ -152,23 +152,20 @@ public class ControlState : AccionState
             //Llamar Init
             Debug.Log("no hay jugadores cerca");
             Hex casilla_fuera;
-            bool fuera_campo;
             if (balon.casilla.y > 10)
             {
                 casilla_fuera = partidoManager.terreno.campo[balon.casilla.x, 11];
-                fuera_campo = true;
             }
             else if (balon.casilla.y < 1)
             {
                 casilla_fuera = partidoManager.terreno.campo[balon.casilla.x, 0];
-                fuera_campo = true;
             }
             else
             {
-                partidoManager.SetState(new DefensaState(partidoManager));
+                partidoManager.SetState(new DefensaState(partidoManager, Accion.NULL));
                 return;
             }
-            partidoManager.SetState(new InitState(partidoManager, casilla_fuera, fuera_campo));
+            partidoManager.SetState(new InitState(partidoManager, casilla_fuera, Accion.FUERA_CAMPO));
         }
         else
         {
@@ -224,6 +221,6 @@ public class ControlState : AccionState
 
     public override void JugadaTerminadaConExito()
     {
-        partidoManager.SetState(new AtaqueState(partidoManager));
+        partidoManager.SetState(new AtaqueState(partidoManager, Accion.NULL));
     }
 }

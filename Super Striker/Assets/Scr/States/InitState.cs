@@ -7,52 +7,41 @@ public class InitState : IState
     PartidoManager partidoManager;
     Jugador jugadorSelected;
     List<Hex> casillas;
-    List<Jugador> jugadoresNegrosSinMover = new List<Jugador>();
-    List<Jugador> jugadoresBlancosSinMover = new List<Jugador>();
-    int equipo_con_balon; //0 = NEGRO, 1 = BLANCO
     Hex casilla_saque;
     Accion accion;
-    bool fueraDelCampo = false;
 
-    public InitState(PartidoManager pm, Hex casilla, bool fueraDelCampo)
+    public InitState(PartidoManager pm, Hex casilla, Accion accion_)
     {
         partidoManager = pm;
         casilla_saque = casilla;
-        this.fueraDelCampo = fueraDelCampo;
+        accion = accion_;
     }
     public void Enter()
     {
         partidoManager.LimpiarCasillas();
-        partidoManager.DeselecteAll();
         partidoManager.canvasAccion.enabled = false;
         partidoManager.canvasControl.enabled = false;
         partidoManager.canvasControlCabeza.enabled = false;
 
-        equipo_con_balon = partidoManager.equipo_con_balon;
+        if (partidoManager.saqueDeCentro)
+        {
+            partidoManager.ColocarJugadorEnPosicionInicial();
+            if (partidoManager.balon.Jugador != null)
+            {
+                partidoManager.balon.Jugador.tieneBalon = false;
+                partidoManager.balon.Jugador = null;
+            }
+            partidoManager.balon.transform.position = casilla_saque.transform.position;
+        }
 
         //Se ejecuta cuando el balón sale fuera
-        if (fueraDelCampo && equipo_con_balon == 0) equipo_con_balon = 1;
-        else if (fueraDelCampo && equipo_con_balon == 1) equipo_con_balon = 0;
+        if (accion == Accion.FUERA_CAMPO && partidoManager.equipo_con_balon == 0) partidoManager.equipo_con_balon = 1;
+        else if (accion == Accion.FUERA_CAMPO && partidoManager.equipo_con_balon == 1) partidoManager.equipo_con_balon = 0;
 
-        if (partidoManager.balon.Jugador != null)
-        {
-            partidoManager.balon.Jugador.tieneBalon = false;
-            List<Hex> casillasAdyacentes = casilla_saque.EncontrarVariosVecinos(2);
-            foreach (Hex c in casillasAdyacentes)
-            {
-                if (c.jugador == null)
-                {
-                    partidoManager.balon.Jugador.transform.position = c.transform.position;
-                    break;
-                }
-            }
-            partidoManager.balon.Jugador = null;
-        }
         partidoManager.balon.transform.position = casilla_saque.transform.position;
         partidoManager.balon.casilla = casilla_saque;
         Debug.Log("INIT");
-        Debug.Log("Coloca a los jugadores");
-        Debug.Log("El primer jugador que elijas del equipo con balon, hará el saque");
+        Debug.Log("Coloca a los jugadores: El primer jugador que elijas del equipo con balon, hará el saque");
     }
 
     public void Execute()
@@ -66,7 +55,7 @@ public class InitState : IState
             {
                 jugadorSelected = selectedObject.GetComponent<Jugador>();
                 casillas = partidoManager.casillaCentral.EncontrarVariosVecinos(25);
-                if (jugadorSelected.equipo != equipo_con_balon)
+                if (jugadorSelected.equipo != partidoManager.equipo_con_balon)
                 {
                     List<Hex> casillasDosDistanciaBalon = partidoManager.balon.casilla.EncontrarVariosVecinos(2);
                     foreach (Hex casillaCercaBalon in casillasDosDistanciaBalon)
@@ -78,10 +67,18 @@ public class InitState : IState
                 {
                     if (partidoManager.balon.Jugador == null)
                     {
-                        jugadorSelected.GetComponent<CircleCollider2D>().enabled = false;
-                        jugadorSelected.Casilla = partidoManager.balon.casilla;
+                        jugadorSelected.casilla.jugador = null;
+                        jugadorSelected.transform.position = partidoManager.balon.transform.position;
+                        jugadorSelected.casilla = partidoManager.balon.casilla;
                         jugadorSelected.tieneBalon = true;
+                        partidoManager.balon.Jugador = jugadorSelected;
                         jugadorSelected = null;
+                        if (accion == Accion.FALTA)
+                        {
+                            partidoManager.Invoke("DeselecteAll", 1);
+                            partidoManager.SetState(new AtaqueState(partidoManager, Accion.FALTA));
+                        }
+                        
                         return;
                     }
                 }
@@ -107,7 +104,6 @@ public class InitState : IState
                 partidoManager.LimpiarCasillas(casillas);
             }
         }
-        
     }
 
     public void Exit()
@@ -117,10 +113,12 @@ public class InitState : IState
         foreach (Jugador jugador in partidoManager.jugadoresBlanco)
         {
             jugador.GetComponent<CircleCollider2D>().enabled = true;
+            jugador.casilla.jugador = jugador;
         }
         foreach (Jugador jugador in partidoManager.jugadoresNegro)
         {
             jugador.GetComponent<CircleCollider2D>().enabled = true;
+            jugador.casilla.jugador = jugador;
         }
     }
 

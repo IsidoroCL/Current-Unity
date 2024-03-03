@@ -17,19 +17,22 @@ public class Hex : MonoBehaviour {
 	public Jugador jugador;
 	public Balon balon;
     public Map terreno;
+    //public List<Jugador> jugadoresControlaCasilla;
 
     //Variable para hacer seleccionable la casilla
     public bool activa;
 
     //Para recuperar el color original
     private Color color_inicial;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
-
+        //jugadoresControlaCasilla = new List<Jugador>();
         terreno = FindObjectOfType<Map>();
 
         //Invisible
+        spriteRenderer = GetComponent<SpriteRenderer>();
         Color tmp = GetComponent<SpriteRenderer>().color;
         tmp.a = 0f;
         color_inicial = tmp;
@@ -152,8 +155,7 @@ public class Hex : MonoBehaviour {
     {
         if (collision.tag == "Jugador")
         {
-			//Vaciamos Jugador en caso de que el jugador salga de la casilla
-			jugador = null;
+            if (collision.gameObject.GetComponent<Jugador>() == jugador) jugador = null;
         }
     }
 
@@ -183,7 +185,7 @@ public class Hex : MonoBehaviour {
             activa = true;
     }
 
-    public List<Hex> encontrarVecinos()
+    public List<Hex> EncontrarVecinos()
     {
         List<Hex> vecinos = new List<Hex>();
         
@@ -217,14 +219,14 @@ public class Hex : MonoBehaviour {
     public List<Hex> EncontrarVariosVecinos(int dist)
     {
         //dist: casillas de distancia
-        List<Hex> vecinos_inicial = this.encontrarVecinos();
+        List<Hex> vecinos_inicial = this.EncontrarVecinos();
         List<Hex> vecinos_temp = new List<Hex>();
         
         for (int i = 1; i < dist; i++)
         {
             foreach (Hex casilla in vecinos_inicial)
             {
-                vecinos_temp.AddRange(casilla.encontrarVecinos());
+                vecinos_temp.AddRange(casilla.EncontrarVecinos());
             }
             vecinos_inicial.AddRange(vecinos_temp);
             //Quitamos los repetidos
@@ -232,5 +234,20 @@ public class Hex : MonoBehaviour {
         }
         return vecinos_inicial;
     }
+    /*
+    public void AddJugadorControla(Jugador jugador)
+    {
+        jugadoresControlaCasilla.Add(jugador);
+        spriteRenderer.color = Color.red;
+        Color newColor = spriteRenderer.color;
+        newColor.a = 0.2f; 
+        spriteRenderer.color = newColor;
+    }
 
+    public void LimpiarJugadoresControla()
+    {
+        jugadoresControlaCasilla.Clear();
+        Desactivar();
+    }
+    */
 }

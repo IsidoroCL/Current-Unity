@@ -7,32 +7,46 @@ public class AtaqueState : IState
     Jugador jugadorSelected;
     int jugadoresMovidos;
     List<Hex> casillas;
-    public AtaqueState(PartidoManager pm)
+    Accion accion;
+    public AtaqueState(PartidoManager pm, Accion accion)
     {
         partidoManager = pm;
         casillas = new List<Hex>();
+        this.accion = accion;
     }
     public void Enter()
     {
         Debug.Log("ATAQUE");
         partidoManager.Numero_turno++;
         partidoManager.ComprobarJugadorCercano(partidoManager.balon.casilla);
+        
         if (partidoManager.balon.Jugador == null) { Debug.Log("***BALON SIN JUGADOR***"); }
         if (partidoManager.ultimoFutbolistaConBalon.equipo == 0)
         {
             foreach (Jugador jug2 in partidoManager.jugadoresNegro)
             {
                 jug2.IsSelectable = true;
+                jug2.transform.position = jug2.Casilla.transform.position;
             }
+            /*foreach (Jugador jugContrario in partidoManager.jugadoresBlanco)
+            {
+                jugContrario.CasillasControladas();
+            }*/
         }
         else
         {
             foreach (Jugador jug2 in partidoManager.jugadoresBlanco)
             {
                 jug2.IsSelectable = true;
+                jug2.transform.position = jug2.Casilla.transform.position;
             }
+            /*foreach (Jugador jugContrario in partidoManager.jugadoresNegro)
+            {
+                jugContrario.CasillasControladas();
+            }*/
         }
-        jugadoresMovidos = 0;
+        if (accion == Accion.FALTA && partidoManager.balon.Jugador != null) partidoManager.balon.Jugador.IsSelectable = false;
+        jugadoresMovidos = 0;        
     }
 
     public void Execute()
@@ -55,13 +69,13 @@ public class AtaqueState : IState
                 jugadorSelected != null)
             {
                 jugadorSelected.Casilla = selectedObject.GetComponent<Hex>();
-                jugadorSelected.isSelected = false;
+                jugadorSelected.IsSelectable = false;
                 jugadoresMovidos++;
                 jugadorSelected = null;
                 partidoManager.LimpiarCasillas(casillas);
             }
         }
-        if (jugadoresMovidos > 2) partidoManager.SetState(new DefensaState(partidoManager));
+        if (jugadoresMovidos > 2) partidoManager.SetState(new DefensaState(partidoManager, accion));
     }
 
     public void Exit()
@@ -74,11 +88,11 @@ public class AtaqueState : IState
         {
             jugador.IsSelectable = false;
         }
-        partidoManager.LimpiarCasillas(casillas);
+        partidoManager.LimpiarCasillas();
     }
 
-    public void ReceiveAction(Accion accion)
+    public void ReceiveAction(Accion accion_)
     {
-        if (accion == Accion.NADA) partidoManager.SetState(new DefensaState(partidoManager));
+        if (accion_ == Accion.NADA) partidoManager.SetState(new DefensaState(partidoManager, accion));
     }
 }

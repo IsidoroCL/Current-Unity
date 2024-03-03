@@ -52,7 +52,6 @@ public class AccionState : IState
                 }
                 else if (selectedObject.GetComponent<Hex>())
                 {
-                    //accion = Accion.BALON_SUELTO;
                     JugadaBalon(selectedObject.GetComponent<Hex>());
                 }              
             }
@@ -65,9 +64,9 @@ public class AccionState : IState
                 {
                     balon.jugador.Casilla = selectedObject.GetComponent<Hex>();
                     balon.casilla = balon.jugador.casilla;
-                    balon.jugador.isSelected = false;
+                    balon.jugador.isSelectable = false;
                     balon.jugador.resistencia--;
-                    partidoManager.SetState(new AtaqueState(partidoManager));
+                    partidoManager.SetState(new AtaqueState(partidoManager, Accion.NULL));
                 }
                 else Debug.Log("El jugador no puede correr, está cansado");
             }
@@ -79,8 +78,8 @@ public class AccionState : IState
                     selectedObject.GetComponent<Hex>().jugador == null)
                 {
                     balon.jugador.Casilla = selectedObject.GetComponent<Hex>();
-                    balon.jugador.isSelected = false;
-                    partidoManager.SetState(new AtaqueState(partidoManager));
+                    balon.jugador.isSelectable = false;
+                    partidoManager.SetState(new AtaqueState(partidoManager, Accion.NULL));
                 }
             }
             
@@ -102,7 +101,7 @@ public class AccionState : IState
     {
         this.accion = accion;
         partidoManager.LimpiarCasillas(casillas);
-        if (accion == Accion.NADA) partidoManager.SetState(new AtaqueState(partidoManager));
+        if (accion == Accion.NADA) partidoManager.SetState(new AtaqueState(partidoManager, Accion.NULL));
         else if (accion == Accion.PASE_BAJO) PaseBajo();
         else if (accion == Accion.PASE_ALTO) PaseAlto();
         else if (accion == Accion.TIRO) Tiro();
@@ -115,7 +114,9 @@ public class AccionState : IState
         casillas = balon.jugador.casilla.EncontrarVariosVecinos(8);
         foreach(Hex casilla in casillas)
         {
-            if (casilla.jugador != null) casilla.jugador.IsSelectable = true;
+            if (casilla.jugador != null &&
+                casilla.jugador.equipo == balon.jugador.equipo) 
+                casilla.jugador.IsSelectable = true;
         }
         partidoManager.ActivarCasillas(casillas);
     }
@@ -125,7 +126,8 @@ public class AccionState : IState
         casillas = balon.jugador.casilla.EncontrarVariosVecinos(25);
         foreach (Hex casilla in casillas)
         {
-            if (casilla.jugador != null) casilla.jugador.IsSelectable = true;
+            if (casilla.jugador != null &&
+                casilla.jugador.equipo == balon.jugador.equipo) casilla.jugador.IsSelectable = true;
         }
         partidoManager.ActivarCasillas(casillas);
     }
@@ -160,7 +162,6 @@ public class AccionState : IState
         if (accion == Accion.PASE_ALTO)
         {
             exitos_jugada = balon.jugador.Tirada(balon.jugador.paseAlto);
-            balon.DesactivarCollider();
             if (ResolverPaseAlto(balon.jugador.casilla) &&
                 ResolverPaseAlto(casilla_objetivo))
             {
@@ -186,7 +187,6 @@ public class AccionState : IState
             exitos_jugada = balon.jugador.Tirada(balon.jugador.cabezazo + balon.jugador.casilla.bonus);
         }
         balon.jugador.tieneBalon = false;
-        balon.ActivarCollider();
         balon.Jugador = null;
     }
 
@@ -205,7 +205,7 @@ public class AccionState : IState
                 if (casi.jugador.equipo != partidoManager.ultimoFutbolistaConBalon.equipo)
                 {
                     if (casi.jugador.IsActive)
-                        ResolverEnfrentamiento(casi.jugador);
+                        return ResolverEnfrentamiento(casi.jugador);
                 }
             }  
         }
@@ -214,7 +214,7 @@ public class AccionState : IState
 
     public void ComprobarJugadorCercano(Hex casilla)
     {
-        List<Hex> vecinos_casilla = casilla.encontrarVecinos();
+        List<Hex> vecinos_casilla = casilla.EncontrarVecinos();
         foreach (Hex cas in vecinos_casilla)
         {
             if (cas.jugador != null)
@@ -251,11 +251,11 @@ public class AccionState : IState
         {
             //La jugada continua
             balon.pausarMovimientoBalon = false;
-            jugadorRival.Desactivar();
+            jugadorRival.IsActive = false;
         }
         else if (exitos_jugada < exitos_defensa)
         {
-            Robo(jugadorRival);
+            partidoManager.Robo(jugadorRival);
             return false;
         }
         else
@@ -265,7 +265,7 @@ public class AccionState : IState
         return true;
     }
 
-    private void Robo(Jugador newBalonJugador)
+    /*private void Robo(Jugador newBalonJugador)
     {
         Debug.Log("Jugador que ha robado: " + newBalonJugador.name);
         balon.PararBalon();
@@ -273,8 +273,8 @@ public class AccionState : IState
         balon.Jugador.tieneBalon = true;
         balon.transform.position = balon.transform.position;
         balon.pausarMovimientoBalon = false;
-        partidoManager.SetState(new AtaqueState(partidoManager));
-    }
+        partidoManager.SetState(new AtaqueState(partidoManager, Accion.NULL));
+    }*/
 
     private void Rechace(Jugador jugRival)
     {

@@ -9,18 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4275e77be359724e9adfca7b8c81d47, type: 3}
-  m_Name: Amateur
+  m_Script: {fileID: 11500000, guid: 94e5721fb4c703242a884ed17c895d7f, type: 3}
+  m_Name: Dummy
   m_EditorClassIdentifier: 
-  nombre: Amateur
-  imagenCompleta: {fileID: 0}
-  imagenIcono: {fileID: 0}
-  regate: 0
-  paseBajo: 0
-  paseAlto: 0
-  tiro: 4
-  cabezazo: 1
-  defensa: 0
-  velocidad: 0
-  control: 1
-  resistencia: 3

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 
 public class PartidoManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class PartidoManager : MonoBehaviour
     public static PartidoManager partidoManager;
     public static int[] marcador = { 0, 0};
     public bool saqueDeCentro;
+
+    [Header("EQUIPOS")]
+    public Equipo equipo1;
+    public Equipo equipo2;
 
     //GameObjects que tiene que manejar para comunicarse
     public Balon balon;
@@ -77,13 +82,9 @@ public class PartidoManager : MonoBehaviour
     void Start()
     {
         casillaCentral = terreno.CasillaCentral();
-        //Crear Jugadores
-        /*for (int i = 0; i < 7; i++)
-        {
-            Instantiate(futbolista, new Vector3())
-        }*/
-        Invoke("ColocarJugadorEnPosicionInicial", 1);
-        stateMachine.ChangeState(new InitState(this, casillaCentral, false));      
+        CrearJugadores(equipo1, jugadoresNegro, true);
+        CrearJugadores(equipo2, jugadoresBlanco, false);
+        stateMachine.ChangeState(new InitState(this, casillaCentral, Accion.NULL));      
     }
 
     void Update()
@@ -162,11 +163,42 @@ public class PartidoManager : MonoBehaviour
         }
     }
     */
+    private void CrearJugadores(Equipo equipo, List<Jugador> futbolistas, bool equipoIzquierda)
+    {
+        int i = 0;
+        foreach(Jugador jugadorIniciar in futbolistas)
+        {
+            int posicionX = equipoIzquierda ? equipo.tactica.posiciones[i].x : 24 - equipo.tactica.posiciones[i].x;
+            int equipoPartido = equipoIzquierda ? 0 : 1;
+            jugadorIniciar.Init(equipo.plantilla[i], i+1, new Vector2Int(posicionX, equipo.tactica.posiciones[i].y), equipo.color1, equipo.color2, equipoPartido);
+            i++;
+        }
+    }
+
+    public void ColocarJugadorEnPosicionInicial()
+    {
+        foreach (Jugador jugador in jugadoresBlanco)
+        {
+            jugador.IsActive = true;
+            jugador.Casilla = terreno.campo[jugador.posicionInicial.x, jugador.posicionInicial.y];
+            terreno.campo[jugador.posicionInicial.x, jugador.posicionInicial.y].jugador = jugador;
+            jugador.IsSelectable = true;
+        }
+        foreach (Jugador jugador in jugadoresNegro)
+        {
+            jugador.IsActive = true;
+            jugador.Casilla = terreno.campo[jugador.posicionInicial.x, jugador.posicionInicial.y];
+            terreno.campo[jugador.posicionInicial.x, jugador.posicionInicial.y].jugador = jugador;
+            jugador.IsSelectable = true;
+        }
+    }
+
     public void LimpiarCasillas()
     {
         foreach (Hex cas in casillas)
         {
             cas.Desactivar();
+            //cas.LimpiarJugadoresControla();
         }
         casillas.Clear();
     }
@@ -176,6 +208,7 @@ public class PartidoManager : MonoBehaviour
         foreach (Hex cas in casillas)
         {
             cas.Desactivar();
+            //cas.LimpiarJugadoresControla();
         }
         casillas.Clear();
     }
@@ -241,25 +274,6 @@ public class PartidoManager : MonoBehaviour
     {
         stateMachine.SendAction(Accion.MOVER);
     }
-
-    public void ColocarJugadorEnPosicionInicial()
-    {
-        foreach (Jugador jugador in jugadoresBlanco)
-        {
-            jugador.IsActive = true;
-            jugador.Casilla = terreno.campo[jugador.posicionInicialX, jugador.posicionInicialY];
-            terreno.campo[jugador.posicionInicialX, jugador.posicionInicialY].jugador = jugador;
-            jugador.IsSelectable = true;
-        }
-        foreach (Jugador jugador in jugadoresNegro)
-        {
-            jugador.IsActive = true;
-            jugador.Casilla = terreno.campo[jugador.posicionInicialX, jugador.posicionInicialY];
-            terreno.campo[jugador.posicionInicialX, jugador.posicionInicialY].jugador = jugador;
-            jugador.IsSelectable = true;
-        }
-    }
-
     public void Gol()
     {
         //Cambiar marcador
@@ -274,15 +288,17 @@ public class PartidoManager : MonoBehaviour
             equipo_con_balon = 0;
         }
         Debug.Log("Negro: " + marcador[0] + " Blanco: " + marcador[1]);
-        ColocarJugadorEnPosicionInicial();
         saqueDeCentro = true;
-        SetState(new InitState(this, casillaCentral, false));
+        balon.Jugador = null;
+        balon.transform.position = casillaCentral.transform.position;
+        SetState(new InitState(this, casillaCentral, Accion.NULL));
 
     }
 
     public void ComprobarJugadorCercano(Hex casilla)
     {
-        List<Hex> vecinos_casilla = casilla.encontrarVecinos();
+        List<Hex> vecinos_casilla = casilla.EncontrarVecinos();
+        //Debug.Log("Comprueba jugadores");
         foreach (Hex cas in vecinos_casilla)
         {
             if (cas.jugador != null && 
@@ -290,12 +306,13 @@ public class PartidoManager : MonoBehaviour
                 balon.jugador != null &&
                 cas.jugador.equipo != balon.jugador.equipo)
             {
-                HacerRegate(balon.jugador, cas.jugador);
+                HacerRegate(balon.jugador, cas.jugador, casilla);
             }
+            //else { Debug.Log("Negativo"); }
         }
     }
 
-    public void HacerRegate(Jugador atacante, Jugador defensor)
+    public void HacerRegate(Jugador atacante, Jugador defensor, Hex cas)
     {
         int exitos_jugada = atacante.Tirada(atacante.regate);
         int exitos_defensa = defensor.Tirada(defensor.defensa);
@@ -312,18 +329,22 @@ public class PartidoManager : MonoBehaviour
         }
         else
         {
+            atacante.StopAllCoroutines();
+            balon.casilla = cas;
             Falta(defensor);
         }
     }
 
-    private void Robo(Jugador newJugadorConBalon)
+    public void Robo(Jugador newJugadorConBalon)
     {
         Debug.Log("Jugador que ha robado: " + newJugadorConBalon.name);
         balon.PararBalon();
+        balon.Jugador.StopAllCoroutines();
         balon.Jugador = newJugadorConBalon;
         balon.Jugador.tieneBalon = true;
         balon.pausarMovimientoBalon = false;
-        SetState(new AtaqueState(partidoManager));
+        balon.MoverBalon(newJugadorConBalon.Casilla);
+        SetState(new AtaqueState(partidoManager, Accion.NULL));
     }
 
     public void Falta(Jugador defensor)
@@ -346,20 +367,25 @@ public class PartidoManager : MonoBehaviour
                     jugadoresBlanco.Remove(defensor);
                 }
                 Debug.Log("Jugador Expulsado!!!!");
-                Destroy(defensor);
+                Destroy(defensor.gameObject);
             }
             else
             {
                 defensor.tieneTarjeta = true;
             }
         }
-        SetState(new InitState(this, balon.casilla, false));
+
+        SetState(new FaltaState(this, balon.casilla));
     }
     
     public void DeselecteAll()
     {
         foreach (Jugador jugador in jugadoresBlanco) jugador.IsSelectable = false;
         foreach (Jugador jugador in jugadoresNegro) jugador.IsSelectable = false;
+        /*foreach (Hex casilla in terreno.campo)
+        {
+            casilla.LimpiarJugadoresControla();
+        }*/
     }
     public void SetState(IState newState)
     {

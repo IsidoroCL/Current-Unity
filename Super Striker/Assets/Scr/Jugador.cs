@@ -48,12 +48,11 @@ public class Jugador : MonoBehaviour
     public bool esPortero;
 
     //Posición inicial
-    [Range(0, 24)] public int posicionInicialX;
-    [Range(0, 11)] public int posicionInicialY;
+    public Vector2Int posicionInicial;
 
     //Testea si tiene o no la pelota el jugador, si es seleccionable y si ha sido ya usado en el turno
     public bool tieneBalon = false;
-    public bool isSelected = false;
+    public bool isSelectable = false;
     public bool isActive;
     public float speed = 10f;
 
@@ -61,7 +60,8 @@ public class Jugador : MonoBehaviour
     private bool nuevaCasilla;
 
     //Los gráficos del jugador
-    private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer colorPrincipal;
+    [SerializeField] private SpriteRenderer colorSecundario;
     private TextMeshPro camiseta;
     [SerializeField] private GameObject aura;
 
@@ -72,6 +72,7 @@ public class Jugador : MonoBehaviour
         set 
         { 
             jugadorBase = value;
+            nombre = jugadorBase.nombre;
             regate = jugadorBase.regate;
             paseBajo = jugadorBase.paseBajo;
             paseAlto = jugadorBase.paseAlto;
@@ -98,13 +99,17 @@ public class Jugador : MonoBehaviour
 
     public bool IsSelectable
     {
-        get { return isSelected; }
+        get { return isSelectable; }
         set
         {
-            isSelected = value;
-            if (isSelected)
+            isSelectable = value;
+            if (isSelectable)
             {
-                if (!isActive) return;
+                if (!isActive)
+                {
+                    isSelectable = false;
+                    return;
+                }
                 aura.SetActive(true);
             }
             else
@@ -123,49 +128,44 @@ public class Jugador : MonoBehaviour
             if (isActive)
             {
                 //Normal
-                Color tmp = spriteRenderer.color;
+                Color tmp = colorPrincipal.color;
                 tmp.a = 1.0f;
-                spriteRenderer.color = tmp;
+                colorPrincipal.color = tmp;
             }
             else
             {
                 //transparente
-                Color tmp = spriteRenderer.color;
+                Color tmp = colorPrincipal.color;
                 tmp.a = 0.4f;
-                spriteRenderer.color = tmp;
+                colorPrincipal.color = tmp;
             }
         }
     }
 
     private void Awake()
     {
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         camiseta = GetComponentInChildren<TextMeshPro>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        nuevaCasilla = false;
-        tieneBalon = false;
-        isSelected = false;
-        isActive = true;
         partidoManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<PartidoManager>();
         terreno = GameObject.FindGameObjectWithTag("GameController").GetComponent<Map>();
         casillas = new List<Hex>();
+    }
+    
+    public void Init(CartaJugador carta, int dorsal, Vector2Int posicion, Color color1, Color color2, int equipoPartido)
+    {
+        nuevaCasilla = false;
+        tieneBalon = false;
+        IsActive = true;
+        IsSelectable = true;
 
-        if (equipo == 0) 
-        { 
-            spriteRenderer.color = Color.black;
-            camiseta.color = Color.white;
-        }
-        else 
-        { 
-            spriteRenderer.color = Color.white;
-            camiseta.color= Color.black;
-        }
-        
+        colorPrincipal.color = color1;
+        colorSecundario.color = color2;
+        camiseta.color = color2;
+        numero = dorsal;
         camiseta.text = numero.ToString();
-        aura.SetActive(false);
+        posicionInicial = posicion;
+        JugadorBase = carta;
+        equipo = equipoPartido;
+
     }
 
     public IEnumerator MoverJugador(Hex casilla_objetivo)
@@ -191,11 +191,11 @@ public class Jugador : MonoBehaviour
             }
             yield return null;
         }
-        if (casilla == partidoManager.balon.casilla)
+        if (casilla == partidoManager.balon.casilla &&
+            partidoManager.balon.Jugador == null)
         {
             tieneBalon = true;
-            partidoManager.balon.jugador = this;
-            partidoManager.ultimoFutbolistaConBalon = this;
+            partidoManager.balon.Jugador = this;
         }
     }
 
@@ -212,22 +212,15 @@ public class Jugador : MonoBehaviour
         return exitos;
     }
 
-    public void Activar()
-    {
-        IsActive = true;
-    }
-
-    public void Desactivar()
-    {
-        IsActive = false;
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "casilla")
         {
             casilla = collision.gameObject.GetComponent<Hex>();
-            casilla.jugador = gameObject.GetComponent<Jugador>();
+            if (casilla.jugador == null)
+            {
+                casilla.jugador = gameObject.GetComponent<Jugador>();
+            }
             nuevaCasilla = true;
             if (tieneBalon)
             {
@@ -249,5 +242,4 @@ public class Jugador : MonoBehaviour
         }
         return false;
     }
-
 }

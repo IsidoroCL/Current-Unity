@@ -8,10 +8,12 @@ public class DefensaState : IState
     Jugador jugadorSelected;
     int jugadoresMovidos;
     List<Hex> casillas;
-    public DefensaState(PartidoManager pm)
+    Accion accion;
+    public DefensaState(PartidoManager pm, Accion accion)
     {
         partidoManager = pm;
         casillas = new List<Hex>();
+        this.accion = accion;
     }
     public void Enter()
     {
@@ -21,6 +23,7 @@ public class DefensaState : IState
             foreach (Jugador jug2 in partidoManager.jugadoresBlanco)
             {
                 jug2.IsSelectable = true;
+                jug2.transform.position = jug2.Casilla.transform.position;
             }
         }
         else
@@ -28,6 +31,7 @@ public class DefensaState : IState
             foreach (Jugador jug2 in partidoManager.jugadoresNegro)
             {
                 jug2.IsSelectable = true;
+                jug2.transform.position = jug2.Casilla.transform.position;
             }
         }
         jugadoresMovidos = 0;
@@ -47,6 +51,14 @@ public class DefensaState : IState
                 jugadorSelected = selectedObject.GetComponent<Jugador>();
                 partidoManager.LimpiarCasillas(casillas);
                 casillas = jugadorSelected.casilla.EncontrarVariosVecinos(3);
+                if (accion == Accion.FALTA)
+                {
+                    List<Hex> casillasDosDistanciaBalon = partidoManager.balon.casilla.EncontrarVariosVecinos(2);
+                    foreach (Hex casillaCercaBalon in casillasDosDistanciaBalon)
+                    {
+                        casillas.Remove(casillaCercaBalon);
+                    }
+                }
                 partidoManager.ActivarCasillas(casillas);
             }
             else if (selectedObject.GetComponent<Hex>() &&
@@ -55,7 +67,7 @@ public class DefensaState : IState
             {
                 jugadorSelected.Casilla = selectedObject.GetComponent<Hex>();
                 jugadoresMovidos++;
-                jugadorSelected.isSelected = false;
+                jugadorSelected.IsSelectable = false;
                 jugadorSelected = null;
                 partidoManager.LimpiarCasillas(casillas);
             }
@@ -68,7 +80,7 @@ public class DefensaState : IState
             }
             else
             {
-                partidoManager.SetState(new AtaqueState(partidoManager));
+                partidoManager.SetState(new AtaqueState(partidoManager, Accion.NULL));
             }
         }
     }
@@ -96,7 +108,7 @@ public class DefensaState : IState
             }
             else
             {
-                partidoManager.SetState(new AtaqueState(partidoManager));
+                partidoManager.SetState(new AtaqueState(partidoManager, Accion.NULL));
             }
         }
     }
